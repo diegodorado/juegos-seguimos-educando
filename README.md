@@ -27,6 +27,8 @@ npm i
 npm start
 ```
 
+Se iniciará un webserver con hot reload en `http://localhost:8080`
+
 ## Distribución
 
 Para distribuir una versión de una webapp, se debe ejecutar `yarn build` ( o `npm build`) desde el directorio de la webapp.  
