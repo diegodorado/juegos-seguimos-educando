@@ -2,35 +2,22 @@ import './styles/index.sass'
 
 import interact from 'interactjs'
 
-const position = { x: 0, y: 0 }
+import mapSrc from './images/mapa.png'
 
-interact('.draggable').draggable({
-  listeners: {
-    start (event) {
-      console.log(event.type, event.target)
-    },
-    move (event) {
-      position.x += event.dx
-      position.y += event.dy
+const map = document.createElement('img')
+map.src = mapSrc
 
-      event.target.style.transform =
-        `translate(${position.x}px, ${position.y}px)`
-    },
-  }
-})
-
-/* The dragging code for '.draggable' from the demo above
- * applies to this demo as well so it doesn't have to be repeated. */
+const app = document.querySelector('#root')
+app.append(map)
 
 // enable draggables to be dropped into this
 interact('.dropzone').dropzone({
   // only accept elements matching this CSS selector
-  accept: '#yes-drop',
+  //accept: '#yes-drop',
   // Require a 75% element overlap for a drop to be possible
-  overlap: 0.75,
+  overlap: 0.25,
 
   // listen for drop related events:
-
   ondropactivate: function (event) {
     // add active dropzone feedback
     event.target.classList.add('drop-active')
