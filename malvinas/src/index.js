@@ -54,7 +54,9 @@ interact('.dropzone').dropzone({
   },
 
   ondrop: function (event) {
+    event.target.append(event.relatedTarget)
     event.relatedTarget.textContent = 'Dropped'
+    event.relatedTarget.style = ''
   },
 
   ondropdeactivate: function (event) {
