@@ -2,13 +2,28 @@ import './styles/index.sass'
 
 import interact from 'interactjs'
 
-import mapSrc from './images/mapa.png'
-
-const map = document.createElement('img')
-map.src = mapSrc
-
+//creates all dom elements dinamically
 const app = document.querySelector('#root')
-app.append(map)
+const draggables = document.createElement('div')
+const droppables = document.createElement('div')
+
+app.append(draggables)
+app.append(droppables)
+
+const ROWS = 2
+const COLUMNS = 2
+for (let i=0;i<ROWS;i++){
+  for (let j=0;j<COLUMNS;j++){
+    const tile = document.createElement('div')
+    tile.className = 'draggable'
+    draggables.append(tile)
+
+    const place = document.createElement('div')
+    place.className = 'dropzone'
+    droppables.append(place)
+  }
+}
+
 
 // enable draggables to be dropped into this
 interact('.dropzone').dropzone({
@@ -47,7 +62,7 @@ interact('.dropzone').dropzone({
   }
 })
 
-interact('.drag-drop')
+interact('.draggable')
   .draggable({
     inertia: true,
     modifiers: [

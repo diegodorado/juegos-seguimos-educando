@@ -1,25 +1,13 @@
-.draggable
-  touch-action: none
-  user-select: none
-  width: 200px
-  height: 200px
-  background: grey
-
-
-#outer-dropzone
-  height: 140px
-
-#inner-dropzone
-  height: 80px
+#root
+  background: url(../images/fondo_con_letras.svg) no-repeat center center
 
 .dropzone
   background-color: #ccc
   border: dashed 4px transparent
-  border-radius: 4px
-  margin: 10px auto 30px
-  padding: 10px
-  width: 80%
   transition: background-color 0.3s
+  width: 200px
+  height: 200px
+  display: inline-block
 
 .drop-active
   border-color: #aaa
@@ -29,15 +17,19 @@
   border-color: #fff
   border-style: solid
 
-.drag-drop
-  display: inline-block
-  min-width: 40px
-  padding: 2em 0.5em
-  color: #fff
-  background-color: #29e
-  border: solid 2px #fff
+.draggable
   touch-action: none
-  -webkit-transform: translate(0px, 0px)
+  user-select: none
+  width: 200px
+  height: 200px
+  background: grey
+  display: inline-block
+  width: 200px
+  height: 200px
+  color: #fff
+  background: url(../images/mapa.png)
+  border: solid 2px #aaa
+  touch-action: none
   transform: translate(0px, 0px)
   transition: background-color 0.3s
 
