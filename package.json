@@ -1,9 +1,0 @@
-{
-  "name": "juegos-seguimos-educando",
-  "version": "1.0.0",
-  "description": "Aplicaciones web interactivas para el programa SeguimosEducando",
-  "main": "index.js",
-  "repository": "git@github.com:diegodorado/juegos-seguimos-educando.git",
-  "author": "Diego Dorado <diegodorado@gmail.com>",
-  "license": "MIT"
-}
