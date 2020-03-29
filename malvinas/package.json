@@ -44,5 +44,10 @@
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "add": "^2.0.6",
+    "interactjs": "^1.9.7",
+    "yarn": "^1.22.4"
   }
 }

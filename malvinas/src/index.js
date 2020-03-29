@@ -1,13 +1,20 @@
-// Test import of a JavaScript function, an SVG, and Sass
-import HelloWorld from './js/HelloWorld'
-import WebpackLogo from './images/webpack-logo.svg'
 import './styles/index.sass'
 
+import interact from 'interactjs'
 
-// Create heading node
-const greeting = document.createElement('h1')
-greeting.textContent = HelloWorld()
+const position = { x: 0, y: 0 }
 
-// Append SVG and heading nodes to the DOM
-const app = document.querySelector('#root')
-app.append( greeting)
+interact('.draggable').draggable({
+  listeners: {
+    start (event) {
+      console.log(event.type, event.target)
+    },
+    move (event) {
+      position.x += event.dx
+      position.y += event.dy
+
+      event.target.style.transform =
+        `translate(${position.x}px, ${position.y}px)`
+    },
+  }
+})
