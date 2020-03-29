@@ -48,6 +48,7 @@ interact('.dropzone').dropzone({
 
   ondragleave: function (event) {
     // remove the drop feedback style
+    draggables.append(event.relatedTarget)
     event.target.classList.remove('drop-target')
     event.relatedTarget.classList.remove('can-drop')
     event.relatedTarget.textContent = 'Dragged out'
