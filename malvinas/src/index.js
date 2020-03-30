@@ -1,7 +1,8 @@
 import './styles/index.sass'
 import interact from 'interactjs'
+import {Howl} from 'howler'
 
-const ROWS = 2
+const ROWS = 3
 const COLUMNS = 2
 const MAP_WIDTH = 636
 const MAP_HEIGHT = 451
@@ -17,6 +18,25 @@ droppables.style.width = `${MAP_WIDTH}px`
 
 app.append(draggables)
 app.append(droppables)
+
+//sounds
+const sounds = {
+  busy: false,
+  drag: new Howl({src:['./assets/audio/cube-down.mp3'],volume: 0.4}),
+  dragEnter: new Howl({src:['./assets/audio/cube-up.mp3']}),
+  drop: new Howl({src:['./assets/audio/animation-down-1.mp3']}),
+}
+
+const play = (s) => {
+  if (!sounds.busy){
+    sounds.busy = true
+    sounds[s].play()
+    //sounds[s].on('end', () => sounds.busy = false)
+    // prevent double trigger with a short timeout
+    setTimeout(() => sounds.busy = false, 50)
+  }
+}
+
 
 const placements = new Array(ROWS*COLUMNS).fill(-1)
 
@@ -34,12 +54,11 @@ for (let i=0;i<ROWS;i++){
     place.className = 'dropzone tile'
     droppables.append(place)
 
-
     // remember tile index
-    place.index = tile.index = (i*ROWS+j)
+    place.index = tile.index = (i*COLUMNS+j)
 
     //todo: place randomly
-    tile.style.top = `${(i*ROWS+j)*TILE_HEIGHT}px`
+    tile.style.top = `${(i*COLUMNS+j)*TILE_HEIGHT}px`
   }
 }
 
@@ -51,10 +70,6 @@ interact('.dropzone').dropzone({
 
   ondropactivate: function (ev) {
     ev.target.classList.add('drop-active')
-    placements.forEach( (x,i) => {
-      if(x===ev.relatedTarget.index)
-        placements[i] = -1
-    })
   },
 
   ondragenter: function (ev) {
@@ -62,6 +77,7 @@ interact('.dropzone').dropzone({
     var dropzoneElement = ev.target
     dropzoneElement.classList.add('drop-target')
     draggableElement.classList.add('can-drop')
+    play('dragEnter')
   },
 
   ondragleave: function (ev) {
@@ -75,6 +91,7 @@ interact('.dropzone').dropzone({
     ev.relatedTarget.style.left = `${offset.left}px`
     ev.relatedTarget.classList.remove('can-drop')
     placements[ev.target.index] = ev.relatedTarget.index
+    play('drop')
     checkForWin()
   },
 
@@ -99,6 +116,13 @@ interact('.dropzone').dropzone({
 interact('.draggable').draggable({
   inertia: true,
   listeners: { 
+    start: (ev) =>{
+      placements.forEach( (x,i) => {
+        if(x===ev.target.index)
+          placements[i] = -1
+      })
+      play('drag')
+    },
     move: (ev) =>{
       ev.target.style.top = `${ev.client.y-TILE_HEIGHT/2}px`
       ev.target.style.left = `${ev.client.x-TILE_WIDTH/2}px`
