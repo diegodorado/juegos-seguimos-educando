@@ -11,6 +11,7 @@ html, body
 .puzzle
   margin: 0 auto
   padding-top: 250px
+  overflow: hidden
 
 .tile
   touch-action: none
@@ -47,3 +48,26 @@ html, body
     border-color: #fff
     border-style: solid
 
+.win-box
+  background: #f8f8f8
+  text-align: center
+  padding: 3em
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 200
+  button
+    background:  url(../images/boton.svg)
+    font-size: 1.5em
+    outline: 0
+    background: #e6b641
+    font-weight: bolder
+    padding: 0.9em
+    margin: 0 1em
+    border: 0
+    border-radius: 10px
+    cursor: pointer
+    color: #479d6d
+  h2
+    color: #479d6d

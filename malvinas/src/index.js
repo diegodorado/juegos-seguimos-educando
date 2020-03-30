@@ -2,12 +2,13 @@ import './styles/index.sass'
 import interact from 'interactjs'
 import {Howl} from 'howler'
 
-const ROWS = 3
+const ROWS = 2
 const COLUMNS = 2
 const MAP_WIDTH = 636
 const MAP_HEIGHT = 451
 const TILE_WIDTH = MAP_WIDTH / COLUMNS
-const TILE_HEIGHT = MAP_HEIGHT / ROWS
+const TILE_HEIGHT  = MAP_HEIGHT / ROWS
+
 
 //creates all dom elements dinamically
 const app = document.querySelector('#root')
@@ -16,8 +17,24 @@ const droppables = document.createElement('div')
 droppables.className = 'puzzle'
 droppables.style.width = `${MAP_WIDTH}px`
 
+const winBox = document.createElement('div')
+winBox.className = 'win-box'
+winBox.style = 'display:none'
+const winTitle = document.createElement('h2')
+winTitle.innerText = '¡Muy bien! Completaste el mapa'
+const backBtn = document.createElement('button')
+backBtn.innerText = 'Volver'
+backBtn.addEventListener('click', () => window.location.reload())
+const replayBtn = document.createElement('button')
+replayBtn.innerText = 'Jugar de nuevo'
+replayBtn.addEventListener('click', () => window.location.reload())
+winBox.append(winTitle)
+winBox.append(replayBtn)
+winBox.append(backBtn)
+
 app.append(draggables)
 app.append(droppables)
+app.append(winBox)
 
 //sounds
 const sounds = {
@@ -25,13 +42,13 @@ const sounds = {
   drag: new Howl({src:['./assets/audio/cube-down.mp3'],volume: 0.4}),
   dragEnter: new Howl({src:['./assets/audio/cube-up.mp3']}),
   drop: new Howl({src:['./assets/audio/animation-down-1.mp3']}),
+  win: new Howl({src:['./assets/audio/win.mp3']}),
 }
-
+// play sound wrapper
 const play = (s) => {
   if (!sounds.busy){
     sounds.busy = true
     sounds[s].play()
-    //sounds[s].on('end', () => sounds.busy = false)
     // prevent double trigger with a short timeout
     setTimeout(() => sounds.busy = false, 50)
   }
@@ -117,6 +134,7 @@ interact('.draggable').draggable({
   inertia: true,
   listeners: { 
     start: (ev) =>{
+      winBox.style = 'display:none'
       placements.forEach( (x,i) => {
         if(x===ev.target.index)
           placements[i] = -1
@@ -140,5 +158,11 @@ const getOffset = (el) => {
 const checkForWin = () => {
   // js magic
   const won = placements.map((x,i) => x===i).every(x => x)
-  console.log(won,placements)
+  console.log(won)
+  if(won){
+    setTimeout(() => {
+      winBox.style = ''
+      play('win')
+    },250)
+  }
 }
