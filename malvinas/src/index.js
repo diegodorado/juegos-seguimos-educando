@@ -1,26 +1,39 @@
 import './styles/index.sass'
-
 import interact from 'interactjs'
+
+const ROWS = 2
+const COLUMNS = 2
+const MAP_WIDTH = 636
+const MAP_HEIGHT = 451
+const TILE_WIDTH = MAP_WIDTH / COLUMNS
+const TILE_HEIGHT = MAP_HEIGHT / ROWS
 
 //creates all dom elements dinamically
 const app = document.querySelector('#root')
 const draggables = document.createElement('div')
 const droppables = document.createElement('div')
+droppables.className = 'puzzle'
+droppables.style.width = `${MAP_WIDTH}px`
 
 app.append(draggables)
 app.append(droppables)
 
-const ROWS = 2
-const COLUMNS = 2
 for (let i=0;i<ROWS;i++){
   for (let j=0;j<COLUMNS;j++){
     const tile = document.createElement('div')
-    tile.className = 'draggable'
+    tile.className = 'draggable tile'
+    tile.style.width = `${TILE_WIDTH}px`
+    tile.style.height = `${TILE_HEIGHT}px`
+    tile.style.backgroundPositionX = `${-i*TILE_WIDTH}px`
+    tile.style.backgroundPositionY = `${-j*TILE_HEIGHT}px`
     draggables.append(tile)
 
-    const place = document.createElement('div')
-    place.className = 'dropzone'
+    const place = tile.cloneNode()
+    place.className = 'dropzone tile'
     droppables.append(place)
+
+    //todo: place randomly
+    tile.style.top = `${(i*ROWS+j)*TILE_HEIGHT}px`
   }
 }
 
@@ -30,64 +43,44 @@ interact('.dropzone').dropzone({
   // Require a 75% element overlap for a drop to be possible
   overlap: 0.25,
 
-  // listen for drop related events:
-  ondropactivate: function (event) {
+  ondropactivate: function (ev) {
     // add active dropzone feedback
-    event.target.classList.add('drop-active')
+    ev.target.classList.add('drop-active')
   },
 
-  ondragenter: function (event) {
-    var draggableElement = event.relatedTarget
-    var dropzoneElement = event.target
-
-    // feedback the possibility of a drop
+  ondragenter: function (ev) {
+    var draggableElement = ev.relatedTarget
+    var dropzoneElement = ev.target
     dropzoneElement.classList.add('drop-target')
     draggableElement.classList.add('can-drop')
-    draggableElement.textContent = 'Dragged in'
   },
 
-  ondragleave: function (event) {
-    // remove the drop feedback style
-    draggables.append(event.relatedTarget)
-    event.target.classList.remove('drop-target')
-    event.relatedTarget.classList.remove('can-drop')
-    event.relatedTarget.textContent = 'Dragged out'
+  ondragleave: function (ev) {
+    draggables.append(ev.relatedTarget)
+    ev.target.classList.remove('drop-target')
+    ev.relatedTarget.classList.remove('can-drop')
   },
 
-  ondrop: function (event) {
-    event.target.append(event.relatedTarget)
-    event.relatedTarget.textContent = 'Dropped'
-    event.relatedTarget.style = ''
+  ondrop: function (ev) {
+    ev.target.append(ev.relatedTarget)
+    ev.relatedTarget.style.top = 0
+    ev.relatedTarget.style.left = 0
   },
 
-  ondropdeactivate: function (event) {
-    // remove active dropzone feedback
-    event.target.classList.remove('drop-active')
-    event.target.classList.remove('drop-target')
+  ondropdeactivate: function (ev) {
+    ev.target.classList.remove('drop-active')
+    ev.target.classList.remove('drop-target')
   }
 
 })
 
-interact('.draggable')
-  .draggable({
-    inertia: true,
-    autoScroll: true,
-    // dragMoveListener from the dragging demo above
-    listeners: { move: dragMoveListener }
-  })
+interact('.draggable').draggable({
+  inertia: true,
+  listeners: { 
+    move: (ev) =>{
+      ev.target.style.top = `${ev.client.y-TILE_HEIGHT/2}px`
+      ev.target.style.left = `${ev.client.x-TILE_WIDTH/2}px`
+    }
+  }
+})
 
-function dragMoveListener (event) {
-  var target = event.target
-  // keep the dragged position in the data-x/data-y attributes
-  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-  // translate the element
-  target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)'
-
-  // update the posiion attributes
-  target.setAttribute('data-x', x)
-  target.setAttribute('data-y', y)
-}
