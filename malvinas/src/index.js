@@ -24,8 +24,8 @@ for (let i=0;i<ROWS;i++){
     tile.className = 'draggable tile'
     tile.style.width = `${TILE_WIDTH}px`
     tile.style.height = `${TILE_HEIGHT}px`
-    tile.style.backgroundPositionX = `${-i*TILE_WIDTH}px`
-    tile.style.backgroundPositionY = `${-j*TILE_HEIGHT}px`
+    tile.style.backgroundPositionX = `${-j*TILE_WIDTH}px`
+    tile.style.backgroundPositionY = `${-i*TILE_HEIGHT}px`
     draggables.append(tile)
 
     const place = tile.cloneNode()
@@ -44,7 +44,6 @@ interact('.dropzone').dropzone({
   overlap: 0.25,
 
   ondropactivate: function (ev) {
-    // add active dropzone feedback
     ev.target.classList.add('drop-active')
   },
 
@@ -56,15 +55,15 @@ interact('.dropzone').dropzone({
   },
 
   ondragleave: function (ev) {
-    draggables.append(ev.relatedTarget)
     ev.target.classList.remove('drop-target')
     ev.relatedTarget.classList.remove('can-drop')
   },
 
   ondrop: function (ev) {
-    ev.target.append(ev.relatedTarget)
-    ev.relatedTarget.style.top = 0
-    ev.relatedTarget.style.left = 0
+    const offset = getOffset(ev.target)
+    ev.relatedTarget.style.top = `${offset.top}px`
+    ev.relatedTarget.style.left = `${offset.left}px`
+    ev.relatedTarget.classList.remove('can-drop')
   },
 
   ondropdeactivate: function (ev) {
@@ -84,3 +83,9 @@ interact('.draggable').draggable({
   }
 })
 
+const getOffset = (el) => {
+    var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
