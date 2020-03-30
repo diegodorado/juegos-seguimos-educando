@@ -18,6 +18,8 @@ droppables.style.width = `${MAP_WIDTH}px`
 app.append(draggables)
 app.append(droppables)
 
+const placements = new Array(ROWS*COLUMNS).fill(-1)
+
 for (let i=0;i<ROWS;i++){
   for (let j=0;j<COLUMNS;j++){
     const tile = document.createElement('div')
@@ -32,6 +34,10 @@ for (let i=0;i<ROWS;i++){
     place.className = 'dropzone tile'
     droppables.append(place)
 
+
+    // remember tile index
+    place.index = tile.index = (i*ROWS+j)
+
     //todo: place randomly
     tile.style.top = `${(i*ROWS+j)*TILE_HEIGHT}px`
   }
@@ -45,6 +51,10 @@ interact('.dropzone').dropzone({
 
   ondropactivate: function (ev) {
     ev.target.classList.add('drop-active')
+    placements.forEach( (x,i) => {
+      if(x===ev.relatedTarget.index)
+        placements[i] = -1
+    })
   },
 
   ondragenter: function (ev) {
@@ -64,11 +74,24 @@ interact('.dropzone').dropzone({
     ev.relatedTarget.style.top = `${offset.top}px`
     ev.relatedTarget.style.left = `${offset.left}px`
     ev.relatedTarget.classList.remove('can-drop')
+    placements[ev.target.index] = ev.relatedTarget.index
+    checkForWin()
   },
 
   ondropdeactivate: function (ev) {
     ev.target.classList.remove('drop-active')
     ev.target.classList.remove('drop-target')
+  },
+
+  checker: (dragEvent,         // related dragmove or dragend
+                     event,             // Touch, Pointer or Mouse Event
+                     dropped,           // bool default checker result
+                     dropzone,          // dropzone Interactable
+                     dropElement,       // dropzone element
+                     draggable,         // draggable Interactable
+                     draggableElement) => {// draggable element
+
+    return dropped && (placements[dropElement.index] === -1)
   }
 
 })
@@ -88,4 +111,10 @@ const getOffset = (el) => {
     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+
+const checkForWin = () => {
+  // js magic
+  const won = placements.map((x,i) => x===i).every(x => x)
+  console.log(won,placements)
 }
