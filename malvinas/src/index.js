@@ -3,37 +3,28 @@ import interact from 'interactjs'
 import {Howl} from 'howler'
 
 const ROWS = 2
-const COLUMNS = 2
-const MAP_WIDTH = 636
-const MAP_HEIGHT = 451
-const TILE_WIDTH = MAP_WIDTH / COLUMNS
-const TILE_HEIGHT  = MAP_HEIGHT / ROWS
-
+const COLUMNS = 3
 
 //creates all dom elements dinamically
 const app = document.querySelector('#root')
 const draggables = document.createElement('div')
 const droppables = document.createElement('div')
 droppables.className = 'puzzle'
-droppables.style.width = `${MAP_WIDTH}px`
+// droppables.style.width = `${MAP_WIDTH}px`
 
 const winBox = document.createElement('div')
 winBox.className = 'win-box'
 winBox.style = 'display:none'
 const winTitle = document.createElement('h2')
 winTitle.innerText = '¡Muy bien! Completaste el mapa'
-const backBtn = document.createElement('button')
-backBtn.innerText = 'Volver'
-backBtn.addEventListener('click', () => window.location.reload())
 const replayBtn = document.createElement('button')
 replayBtn.innerText = 'Jugar de nuevo'
 replayBtn.addEventListener('click', () => window.location.reload())
 winBox.append(winTitle)
 winBox.append(replayBtn)
-winBox.append(backBtn)
 
-app.append(draggables)
 app.append(droppables)
+app.append(draggables)
 app.append(winBox)
 
 //sounds
@@ -57,14 +48,15 @@ const play = (s) => {
 
 const placements = new Array(ROWS*COLUMNS).fill(-1)
 
+droppables.style.gridTemplateColumns = `repeat(${COLUMNS}, 1fr)`
+
 for (let i=0;i<ROWS;i++){
   for (let j=0;j<COLUMNS;j++){
     const tile = document.createElement('div')
     tile.className = 'draggable tile'
-    tile.style.width = `${TILE_WIDTH}px`
-    tile.style.height = `${TILE_HEIGHT}px`
-    tile.style.backgroundPositionX = `${-j*TILE_WIDTH}px`
-    tile.style.backgroundPositionY = `${-i*TILE_HEIGHT}px`
+    tile.style.backgroundSize = `${COLUMNS*100}%  ${ROWS*100}% `
+    tile.style.backgroundPositionX = `${-j*100}%`
+    tile.style.backgroundPositionY = `${-i*100}%`
     draggables.append(tile)
 
     const place = tile.cloneNode()
@@ -73,9 +65,6 @@ for (let i=0;i<ROWS;i++){
 
     // remember tile index
     place.index = tile.index = (i*COLUMNS+j)
-
-    //todo: place randomly
-    tile.style.top = `${(i*COLUMNS+j)*TILE_HEIGHT}px`
   }
 }
 
@@ -103,9 +92,7 @@ interact('.dropzone').dropzone({
   },
 
   ondrop: function (ev) {
-    const offset = getOffset(ev.target)
-    ev.relatedTarget.style.top = `${offset.top}px`
-    ev.relatedTarget.style.left = `${offset.left}px`
+    placeOver(ev.target,ev.relatedTarget)
     ev.relatedTarget.classList.remove('can-drop')
     placements[ev.target.index] = ev.relatedTarget.index
     play('drop')
@@ -125,7 +112,8 @@ interact('.dropzone').dropzone({
                      draggable,         // draggable Interactable
                      draggableElement) => {// draggable element
 
-    return dropped && (placements[dropElement.index] === -1)
+    // return dropped && (placements[dropElement.index] === -1)
+    return dropped && (draggableElement.index===dropElement.index)
   }
 
 })
@@ -142,8 +130,8 @@ interact('.draggable').draggable({
       play('drag')
     },
     move: (ev) =>{
-      ev.target.style.top = `${ev.client.y-TILE_HEIGHT/2}px`
-      ev.target.style.left = `${ev.client.x-TILE_WIDTH/2}px`
+      ev.target.style.top = `${ev.client.y-ev.target.offsetHeight/2}px`
+      ev.target.style.left = `${ev.client.x-ev.target.offsetWidth/2}px`
     }
   }
 })
@@ -158,7 +146,6 @@ const getOffset = (el) => {
 const checkForWin = () => {
   // js magic
   const won = placements.map((x,i) => x===i).every(x => x)
-  console.log(won)
   if(won){
     setTimeout(() => {
       winBox.style = ''
@@ -166,3 +153,50 @@ const checkForWin = () => {
     },250)
   }
 }
+
+const debounce = (func, wait, immediate) => {
+    var timeout;
+    return () => {
+        const context = this, args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+const resized = () =>{
+  //adjust tiles width and position
+  const w = droppables.children[0].offsetWidth
+  const h = droppables.children[0].offsetHeight
+  for(let i=0;i<draggables.children.length;i++){
+    draggables.children[i].style.width = `${w}px`
+    //todo: place randomly
+    draggables.children[i].style.top = `${i*h}px`
+  }
+
+  // re position placed draggables
+  for(let i=0;i<droppables.children.length;i++){
+    if(placements[i]!== -1){
+      placeOver(droppables.children[i], draggables.children[placements[i]])
+    }
+  }
+
+}
+
+const placeOver = (src, tgt) =>{
+  const offset = getOffset(src)
+  tgt.style.top = `${offset.top}px`
+  tgt.style.left = `${offset.left}px`
+}
+
+window.addEventListener('resize', debounce(resized,10, false), false)
+
+window.addEventListener('orientationchange',resized, false)
+
+resized()
+
