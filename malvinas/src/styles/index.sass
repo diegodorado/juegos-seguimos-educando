@@ -4,19 +4,36 @@ html, body
   padding: 0
   height: 100%
   text-align: center
+  background: #fff
 
 #root
-  background: url(../images/fondo_con_letras.svg) no-repeat center center
+  background: url(../images/top.svg) no-repeat top center,url(../images/bottom.svg) no-repeat bottom center
+  background-color: #1d8fca
+  max-width: 960px
+  margin: 0 auto
+  background-size: contain
   height: 100%
+  
+h1
+  position: fixed
+  font-size: 1.5em
+  height: 3em
+  padding: 1em
+  max-width: 900px
+  margin: 0 auto
+  top: 0
+  left: 0
+  right: 0
+  text-align: center
 
 .puzzle
-  margin: 0 auto
-  padding-top: 250px
-  overflow: hidden
   display: grid
-  max-width: 800px
+  padding: 20vmin
+  width: 60vmin
+  margin: 0 auto
 
 .tile
+  display: inline-block
   touch-action: none
   user-select: none
   transition: background-color 0.3s
@@ -33,7 +50,9 @@ html, body
     width: 0;
     content: ""
     display: block
-    padding-bottom: calc(9/16 * 100%)
+    // aspect ratio
+    //padding-bottom: calc(9/16 * 100%)
+    padding-bottom: 100%
 
 
 .draggable
@@ -69,7 +88,7 @@ html, body
   top: 0
   left: 0
   right: 0
-  z-index: 200
+  z-index: 10000
   button
     background:  url(../images/boton.svg)
     font-size: 1.5em

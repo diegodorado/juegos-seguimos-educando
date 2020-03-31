@@ -2,15 +2,15 @@ import './styles/index.sass'
 import interact from 'interactjs'
 import {Howl} from 'howler'
 
-const ROWS = 2
-const COLUMNS = 3
+const SIZE = 2
 
 //creates all dom elements dinamically
 const app = document.querySelector('#root')
 const draggables = document.createElement('div')
 const droppables = document.createElement('div')
 droppables.className = 'puzzle'
-// droppables.style.width = `${MAP_WIDTH}px`
+const title = document.createElement('h1')
+title.innerText = 'ARMAR EL ROMPECABEZAS COLOCANDO LAS PIEZAS DONDE CORRESPONDEN.'
 
 const winBox = document.createElement('div')
 winBox.className = 'win-box'
@@ -23,6 +23,7 @@ replayBtn.addEventListener('click', () => window.location.reload())
 winBox.append(winTitle)
 winBox.append(replayBtn)
 
+app.append(title)
 app.append(droppables)
 app.append(draggables)
 app.append(winBox)
@@ -46,15 +47,15 @@ const play = (s) => {
 }
 
 
-const placements = new Array(ROWS*COLUMNS).fill(-1)
+const placements = new Array(SIZE*SIZE).fill(-1)
 
-droppables.style.gridTemplateColumns = `repeat(${COLUMNS}, 1fr)`
+droppables.style.gridTemplateColumns = `repeat(${SIZE}, 1fr)`
 
-for (let i=0;i<ROWS;i++){
-  for (let j=0;j<COLUMNS;j++){
+for (let i=0;i<SIZE;i++){
+  for (let j=0;j<SIZE;j++){
     const tile = document.createElement('div')
     tile.className = 'draggable tile'
-    tile.style.backgroundSize = `${COLUMNS*100}%  ${ROWS*100}% `
+    tile.style.backgroundSize = `${SIZE*100}%  ${SIZE*100}% `
     tile.style.backgroundPositionX = `${-j*100}%`
     tile.style.backgroundPositionY = `${-i*100}%`
     draggables.append(tile)
@@ -64,7 +65,7 @@ for (let i=0;i<ROWS;i++){
     droppables.append(place)
 
     // remember tile index
-    place.index = tile.index = (i*COLUMNS+j)
+    place.index = tile.index = (i*SIZE+j)
   }
 }
 
@@ -118,10 +119,13 @@ interact('.dropzone').dropzone({
 
 })
 
+let zIndex = 300
+
 interact('.draggable').draggable({
   inertia: true,
   listeners: { 
     start: (ev) =>{
+      ev.target.style.zIndex = `${zIndex++}`
       winBox.style = 'display:none'
       placements.forEach( (x,i) => {
         if(x===ev.target.index)
@@ -176,7 +180,10 @@ const resized = () =>{
   for(let i=0;i<draggables.children.length;i++){
     draggables.children[i].style.width = `${w}px`
     //todo: place randomly
-    draggables.children[i].style.top = `${i*h}px`
+    const rw = w+Math.random()*(window.innerWidth-w*2)
+    const rh = h+Math.random()*(window.innerHeight-h*2)
+    draggables.children[i].style.top = `${rh}px`
+    draggables.children[i].style.left = `${rw}px`
   }
 
   // re position placed draggables
