@@ -108,6 +108,7 @@
     }
   });
 
+  const svgs = ['virus', 'world', 'top', 'left', 'right'];
   let Cube = (_dec = Ember.inject.service('audio'), (_class = (_temp = class Cube extends _component.default {
     constructor() {
       super(...arguments);
@@ -118,13 +119,15 @@
 
       _initializerDefineProperty(this, "done", _descriptor3, this);
 
+      _defineProperty(this, "faces", ['top', 'left', 'right']);
+
       _defineProperty(this, "_status", new Array(3).fill(false));
 
       _defineProperty(this, "size", 2);
 
-      _defineProperty(this, "faces", ['top', 'left', 'right']);
+      this.size = this.args.size || 2; //preload svg
 
-      this.size = this.args.size || 2;
+      svgs.forEach(s => new Image().src = `svg/${s}.svg`);
     }
 
     start() {
@@ -776,7 +779,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+eb9c9c70"});
+            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+63399ab7"});
           }
         
 //# sourceMappingURL=emberapp.map
