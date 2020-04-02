@@ -1,0 +1,5 @@
+<div class="face {{this.face}} {{if this.done 'done' ''}}" {{did-insert this.makeDraggable}} >
+  {{#each this.tiles as |t|}}
+    <Tile @tile={{t}} @size={{this.size}}/>
+  {{/each}}
+</div>

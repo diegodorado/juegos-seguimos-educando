@@ -1,0 +1,140 @@
+html, body
+  margin: 0
+  padding: 0
+  text-align: center
+  height: 100%
+  overflow: hidden
+
+body
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+  background-size: 400% 400%
+  animation: gradient 15s ease infinite
+  font-family: 'Boogaloo', cursive
+  font-size: 100%
+
+.splash
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  cursor: pointer
+  width: 80vmin
+  filter: drop-shadow(10px 10px 5px black)
+  img
+    width: 60vmin
+    display: block
+    margin: 0 auto
+
+  h3  
+    font-size: 10vmin
+    margin: 0.2em
+  p
+    font-size: 5vmin
+    margin: 0.2em
+  h3,p
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+    color: white
+
+.cube
+  height: 80vmin
+  left: 50%
+  margin: -40vmin
+  position: absolute
+  top: 50%
+  width: 80vmin
+  transform: rotateX(45deg) rotateZ(45deg)
+  transform-style: preserve-3d
+
+
+.face
+  float: left
+  height: 40vmin
+  width: 40vmin
+  position: absolute
+  background: #222
+  display: grid
+  grid-template-columns: repeat(2,1fr)
+
+.face.top
+  background-color: #f66
+  position: relative
+
+.face.left
+  background-color: #e55
+  transform: rotateX(-90deg) translateY(40vmin)
+  transform-origin: 100% 100%
+
+.face.right
+  background-color: #d44
+  transform: rotateZ(90deg) rotateX(-90deg) translateX(40vmin)
+  transform-origin: 100% 0
+
+//shadow
+.face.bottom
+  transform: translateZ(-40vmin)
+  //filter: drop-shadow(40px 40px 10px black)
+  box-shadow: black 4vmin 4vmin 10px 0px
+
+.mirror-top .content
+  transform: rotateX(45deg) rotateZ(45deg)
+
+.mirror-left .content
+  transform: rotateX(45deg) rotateZ(45deg) rotateX(-90deg)
+
+.mirror-right .content
+  transform: rotateX(45deg) rotateZ(45deg) rotateZ(90deg) rotateX(-90deg)
+
+//images
+.face.top, .mirror-top
+  filter: saturate(1.25)
+  .content
+    background-image: url('../svg/top.svg')
+
+.face.left, .mirror-left
+  filter: brightness(0.85)
+  .content
+    background-image: url('../svg/left.svg')
+
+.face.right, .mirror-right 
+  filter: brightness(0.6)
+  .content
+    background-image: url('../svg/right.svg')
+
+.face.done .draggable .content
+  background-color: #98ddff
+  
+.draggable
+  width: 100%
+  cursor: pointer
+  position: relative
+  &::before
+    display: block
+    content: ""
+    width: 100%
+    padding-top: 100%
+  .content
+    box-shadow: inset 0 0 0 0.25em hsla(0, 0%, 0%, 0.1)
+    background-color: #fff
+    position: absolute
+    background-size: calc(var(--size) * 100%)
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    transition: background 0.1s linear
+    background-position: calc( var(--col) * -100%) calc( var(--row) * -100%)
+  &.draggable--over
+    .content
+      background-color: #ee7752
+  &.draggable-source--placed
+    .content
+      background-color: #e73c7e
+
+
+@keyframes gradient
+  0%
+    background-position: 0% 50%
+  50%
+    background-position: 100% 50%
+  100%
+    background-position: 0% 50%

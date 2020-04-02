@@ -1,0 +1,24 @@
+{{#unless this.started}}
+  <div class="splash" {{on 'click' this.start}} >
+    <img src="./svg/virus.svg" />
+    <h3>corona vairus</h3>
+    <p>Ordena las fichas para protegernos</p>
+    <p>Toca la pantalla para comenzar</p>
+  </div>
+{{else}}
+  {{#if this.done}}
+    <div class="splash" {{on 'click' this.start}} >
+      <img src="./svg/world.svg" />
+      <h3>quedate en casa</h3>
+      <p>Toca la pantalla para volver a comenzar</p>
+    </div>
+  {{else}}
+    <div class="cube">
+      {{#each this.faces as |f|}}
+        <CubeFace @face={{f}} @size={{this.size}} @checkStatus={{this.checkStatus}} />
+      {{/each}}
+      <div class="face bottom"/>
+    </div>
+  {{/if}}
+{{/unless}}
+
