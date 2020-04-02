@@ -1,3 +1,5 @@
+$width: 110vmin
+
 html, body
   margin: 0
   padding: 0
@@ -11,6 +13,7 @@ body
   animation: gradient 15s ease infinite
   font-family: 'Boogaloo', cursive
   font-size: 100%
+  position: relative
 
 .splash
   position: absolute
@@ -36,20 +39,20 @@ body
     color: white
 
 .cube
-  height: 80vmin
+  height: $width
   left: 50%
-  margin: -40vmin
+  margin: -($width/2)
   position: absolute
   top: 50%
-  width: 80vmin
+  width: $width
   transform: rotateX(45deg) rotateZ(45deg)
   transform-style: preserve-3d
 
 
 .face
   float: left
-  height: 40vmin
-  width: 40vmin
+  height: ($width/2)
+  width: ($width/2)
   position: absolute
   background: #222
   display: grid
@@ -61,17 +64,17 @@ body
 
 .face.left
   background-color: #e55
-  transform: rotateX(-90deg) translateY(40vmin)
+  transform: rotateX(-90deg) translateY(($width/2))
   transform-origin: 100% 100%
 
 .face.right
   background-color: #d44
-  transform: rotateZ(90deg) rotateX(-90deg) translateX(40vmin)
+  transform: rotateZ(90deg) rotateX(-90deg) translateX(($width/2))
   transform-origin: 100% 0
 
 //shadow
 .face.bottom
-  transform: translateZ(-40vmin)
+  transform: translateZ(-($width/2))
   //filter: drop-shadow(40px 40px 10px black)
   box-shadow: black 4vmin 4vmin 10px 0px
 

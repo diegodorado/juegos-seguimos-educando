@@ -3,6 +3,8 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
+const svgs = ['virus','world','top','left','right']
+
 export default class Cube  extends Component {
 
   @inject('audio') audio
@@ -10,13 +12,15 @@ export default class Cube  extends Component {
   @tracked started = false
   @tracked done
 
+  faces = ['top','left','right']
   _status = new Array(3).fill(false)
   size = 2
-  faces = ['top','left','right']
 
   constructor() {
     super(...arguments)
     this.size = this.args.size || 2
+    //preload svg
+    svgs.forEach(s =>  (new Image()).src = `svg/${s}.svg`) 
   }
 
   @action
