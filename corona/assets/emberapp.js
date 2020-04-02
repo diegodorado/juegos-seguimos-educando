@@ -237,7 +237,8 @@
         },
         classes: {
           mirror: `mirror-${this.face}`
-        }
+        },
+        delay: 0
       });
       swappable.on('drag:start', ev => {
         this.audio.play('drag');

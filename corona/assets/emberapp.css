@@ -14,6 +14,9 @@ body {
   font-size: 100%;
   position: relative;
 }
+body * {
+  -webkit-tap-highlight-color: transparent;
+}
 
 .splash {
   position: absolute;
@@ -43,20 +46,20 @@ body {
 }
 
 .cube {
-  height: 110vmin;
+  height: 96vmin;
   left: 50%;
-  margin: -55vmin;
+  margin: -48vmin;
   position: absolute;
   top: 50%;
-  width: 110vmin;
+  width: 96vmin;
   transform: rotateX(45deg) rotateZ(45deg);
   transform-style: preserve-3d;
 }
 
 .face {
   float: left;
-  height: 55vmin;
-  width: 55vmin;
+  height: 48vmin;
+  width: 48vmin;
   position: absolute;
   background: #222;
   display: grid;
@@ -70,19 +73,23 @@ body {
 
 .face.left {
   background-color: #e55;
-  transform: rotateX(-90deg) translateY(55vmin);
+  transform: rotateX(-90deg) translateY(48vmin);
   transform-origin: 100% 100%;
 }
 
 .face.right {
   background-color: #d44;
-  transform: rotateZ(90deg) rotateX(-90deg) translateX(55vmin);
+  transform: rotateZ(90deg) rotateX(-90deg) translateX(48vmin);
   transform-origin: 100% 0;
 }
 
 .face.bottom {
-  transform: translateZ(-55vmin);
+  transform: translateZ(-48vmin);
   box-shadow: black 4vmin 4vmin 10px 0px;
+}
+
+.asdf .mirror-top, .asdf .mirror-left, .asdf .mirror-right {
+  transform-origin: 500% 500%;
 }
 
 .mirror-top .content {
