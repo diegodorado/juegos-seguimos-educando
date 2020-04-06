@@ -40,6 +40,7 @@ export default class CounterComponent extends Component {
       classes: {
         mirror: `mirror-${this.face}`,
       },
+      delay: 0,
     })
 
     swappable.on('drag:start', (ev) => {

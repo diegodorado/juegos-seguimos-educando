@@ -1,16 +1,16 @@
 {{#unless this.started}}
   <div class="splash" {{on 'click' this.start}} >
     <img src="./svg/virus.svg" />
-    <h3>corona vairus</h3>
+    <h3>¿Cómo nos cuidamos?</h3>
     <p>Ordena las fichas para protegernos</p>
-    <p>Toca la pantalla para comenzar</p>
+    <p>TOCA LA PANTALLA PARA COMENZAR</p>
   </div>
 {{else}}
   {{#if this.done}}
     <div class="splash" {{on 'click' this.start}} >
       <img src="./svg/world.svg" />
-      <h3>quedate en casa</h3>
-      <p>Toca la pantalla para volver a comenzar</p>
+      <h3>Quedate en casa</h3>
+      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
     </div>
   {{else}}
     <div class="cube">

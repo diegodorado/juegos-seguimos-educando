@@ -1,4 +1,4 @@
-$width: 110vmin
+$width: 96vmin
 
 html, body
   margin: 0
@@ -14,6 +14,9 @@ body
   font-family: 'Boogaloo', cursive
   font-size: 100%
   position: relative
+  *
+    -webkit-tap-highlight-color: transparent
+
 
 .splash
   position: absolute
@@ -77,6 +80,10 @@ body
   transform: translateZ(-($width/2))
   //filter: drop-shadow(40px 40px 10px black)
   box-shadow: black 4vmin 4vmin 10px 0px
+
+.asdf
+  .mirror-top, .mirror-left, .mirror-right
+    transform-origin: 500% 500%
 
 .mirror-top .content
   transform: rotateX(45deg) rotateZ(45deg)
