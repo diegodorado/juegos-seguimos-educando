@@ -524,7 +524,7 @@
 
     const dir = Math.round(Math.atan2(dj, di) / (Math.PI / 4)); // calculate length of marker
 
-    const l = Math.min(Math.abs(di), Math.abs(dj)) + 1;
+    const l = Math.max(Math.abs(di), Math.abs(dj)) + 1;
     const w = (Math.abs(dir) % 2 ? Math.sqrt(2 * l * l) - 0.3 : l) * s;
     element.setAttribute('style', `top: ${s * a.j}px; left: ${s * a.i}px;height:${s}px;width:${w}px;transform:rotate(${dir * 45}deg);transform-origin:${s / 2}px;`);
   });
@@ -649,7 +649,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+ea471615"});
+            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+61e696e7"});
           }
         
 //# sourceMappingURL=emberapp.map
