@@ -113,16 +113,18 @@ export default class Cube  extends Component {
     }
   }
 
-  checkWord(word){
-    if(this.words.any( w => w===word)){
-      if(!this.foundWords.any( m => m.word===word)){
-        this.foundWords = [...this.foundWords,{word,start:this.startPos, markerDir: this.markerDir, markerLength: this.markerLength}]
-        if(this.foundWords.length === this.words.length){
-          this.audio.play('win')
-          setTimeout( () => this.done = true, 2000)
+  checkWord(w){
+    [w,w.split('').reverse().join('')].forEach(word =>{
+      if(this.words.any( w => w===word)){
+        if(!this.foundWords.any( m => m.word===word)){
+          this.foundWords = [...this.foundWords,{word,start:this.startPos, markerDir: this.markerDir, markerLength: this.markerLength}]
+          if(this.foundWords.length === this.words.length){
+            this.audio.play('win')
+            setTimeout( () => this.done = true, 2000)
+          }
         }
       }
-    }
+    })
   }
 
 }
