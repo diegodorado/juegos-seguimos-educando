@@ -1,5 +1,26 @@
 'use strict';
 
+define("emberapp/tests/integration/helpers/word-test", ["qunit", "ember-qunit", "@ember/test-helpers"], function (_qunit, _emberQunit, _testHelpers) {
+  "use strict";
+
+  (0, _qunit.module)('Integration | Helper | word', function (hooks) {
+    (0, _emberQunit.setupRenderingTest)(hooks); // Replace this with your real tests.
+
+    (0, _qunit.test)('it renders', async function (assert) {
+      this.set('inputValue', '1234');
+      await (0, _testHelpers.render)(Ember.HTMLBars.template(
+      /*
+        {{word inputValue}}
+      */
+      {
+        id: "o/HNUtI/",
+        block: "{\"symbols\":[],\"statements\":[[1,0,0,0,[31,2,4,[27,[26,1,\"CallHead\"],[]],[[27,[26,0,\"Expression\"],[]]],null]]],\"hasEval\":false,\"upvars\":[\"inputValue\",\"word\"]}",
+        meta: {}
+      }));
+      assert.equal(this.element.textContent.trim(), '1234');
+    });
+  });
+});
 define("emberapp/tests/integration/modifiers/marker-test", ["qunit", "ember-qunit", "@ember/test-helpers"], function (_qunit, _emberQunit, _testHelpers) {
   "use strict";
 

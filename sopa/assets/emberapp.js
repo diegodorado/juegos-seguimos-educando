@@ -148,7 +148,7 @@
   });
   _exports.default = void 0;
 
-  var _dec, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _temp;
+  var _dec, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _temp;
 
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -162,21 +162,16 @@
   /*
     {{#unless this.started}}
     <div class="splash" {{on 'click' this.start}} >
-      <h3>¿Cómo nos cuidamos?</h3>
+      <h3>Sopa de Letras</h3>
       <p>TOCA LA PANTALLA PARA COMENZAR</p>
     </div>
   {{else}}
-    {{#if this.done}}
-      <div class="splash" {{on 'click' this.start}} >
-        <h3>Quedate en casa</h3>
-        <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
-      </div>
-    {{else}}
-      <div class="puzzle">
-        {{#each this.puzzle as |row j|}}
+    <div class="canvas" {{on 'pointermove' this.mouseMove}} {{on 'pointerup' this.mouseUp}} >
+      <div class="puzzle" {{on 'pointerdown' this.mouseDown}} >
+        {{#each this.puzzle as |row|}}
           <div class="row">
-            {{#each row as |cell i|}}
-              <div class="cell" {{on 'mousedown' (fn this.mouseDown i j)}} {{on 'mousemove' (fn this.mouseMove i j)}} {{on 'mouseup' (fn this.mouseUp i j)}} >
+            {{#each row as |cell|}}
+              <div class="cell">
                 <svg viewBox="0 0 10 10">
                   <text x="5" y="8">{{cell}}</text>
                 </svg>
@@ -184,10 +179,21 @@
             {{/each}}
           </div>
         {{/each}}
-        <div class="markers" {{marker this.mouseDownPos this.mousePos this.cellSize }}></div>
-        {{#each this.markers as |m j|}}
-          <div class="markers" {{marker m.start m.end this.cellSize }}></div>
+        <div class="marker" {{marker this.startPos this.markerDir this.markerLength this.cellSize }}></div>
+        {{#each this.foundWords as |m|}}
+          <div class="marker" {{marker m.start m.markerDir m.markerLength this.cellSize }}></div>
         {{/each}}
+      </div>
+      <div class="words">
+        {{#each this.words as |w|}}
+          <span class={{word this.foundWords w}}>{{w}}</span>
+        {{/each}}
+      </div>
+    </div>
+    {{#if this.done}}
+      <div class="splash">
+        <h3>¡Muy bien!</h3>
+        <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
       </div>
     {{/if}}
   {{/unless}}
@@ -195,8 +201,8 @@
   
   */
   {
-    id: "JJFGOTAg",
-    block: "{\"symbols\":[\"m\",\"j\",\"row\",\"j\",\"cell\",\"i\"],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xBFC\xF3mo nos cuidamos?\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"Quedate en casa\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",true],[12,\"class\",\"puzzle\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,4,\"BlockHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[27,[24,0],[\"puzzle\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"div\",true],[12,\"class\",\"row\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,4,\"BlockHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[27,[24,3],[]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"            \"],[9,\"div\",false],[23,\"class\",\"cell\",null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[\"mousedown\",[31,517,2,[27,[26,1,\"CallHead\"],[]],[[27,[24,0],[\"mouseDown\"]],[27,[24,6],[]],[27,[24,4],[]]],null]],null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[\"mousemove\",[31,560,2,[27,[26,1,\"CallHead\"],[]],[[27,[24,0],[\"mouseMove\"]],[27,[24,6],[]],[27,[24,4],[]]],null]],null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[\"mouseup\",[31,601,2,[27,[26,1,\"CallHead\"],[]],[[27,[24,0],[\"mouseUp\"]],[27,[24,6],[]],[27,[24,4],[]]],null]],null],[10],[1,1,0,0,\"\\n              \"],[9,\"svg\",true],[12,\"viewBox\",\"0 0 10 10\",null],[10],[1,1,0,0,\"\\n                \"],[9,\"text\",true],[12,\"x\",\"5\",null],[12,\"y\",\"8\",null],[10],[1,0,0,0,[27,[24,5],[]]],[11],[1,1,0,0,\"\\n              \"],[11],[1,1,0,0,\"\\n            \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[5,6]}]]],[1,1,0,0,\"        \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[3,4]}]]],[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"markers\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[[27,[24,0],[\"mouseDownPos\"]],[27,[24,0],[\"mousePos\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,4,\"BlockHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[27,[24,0],[\"markers\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"div\",false],[23,\"class\",\"markers\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[[27,[24,1],[\"start\"]],[27,[24,1],[\"end\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1,2]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"marker\",\"fn\",\"on\",\"-track-array\",\"each\",\"if\",\"unless\"]}",
+    id: "lylxFQ58",
+    block: "{\"symbols\":[\"w\",\"m\",\"row\",\"cell\"],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Sopa de Letras\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"canvas\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointermove\",[27,[24,0],[\"mouseMove\"]]],null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointerup\",[27,[24,0],[\"mouseUp\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"div\",false],[23,\"class\",\"puzzle\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointerdown\",[27,[24,0],[\"mouseDown\"]]],null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"puzzle\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"div\",true],[12,\"class\",\"row\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,3],[]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"            \"],[9,\"div\",true],[12,\"class\",\"cell\",null],[10],[1,1,0,0,\"\\n              \"],[9,\"svg\",true],[12,\"viewBox\",\"0 0 10 10\",null],[10],[1,1,0,0,\"\\n                \"],[9,\"text\",true],[12,\"x\",\"5\",null],[12,\"y\",\"8\",null],[10],[1,0,0,0,[27,[24,4],[]]],[11],[1,1,0,0,\"\\n              \"],[11],[1,1,0,0,\"\\n            \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[4]}]]],[1,1,0,0,\"        \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[3]}]]],[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[24,0],[\"startPos\"]],[27,[24,0],[\"markerDir\"]],[27,[24,0],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[24,2],[\"start\"]],[27,[24,2],[\"markerDir\"]],[27,[24,2],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[2]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n    \"],[9,\"div\",true],[12,\"class\",\"words\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"words\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"span\",true],[13,\"class\",[31,974,4,[27,[26,0,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]],[27,[24,1],[]]],null],null],[10],[1,0,0,0,[27,[24,1],[]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",true],[12,\"class\",\"splash\",null],[10],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Muy bien!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"word\",\"marker\",\"-track-array\",\"each\",\"on\",\"if\",\"unless\"]}",
     meta: {
       moduleName: "emberapp/components/game.hbs"
     }
@@ -204,7 +210,7 @@
 
   let Cube = (_dec = Ember.inject.service('audio'), (_class = (_temp = class Cube extends _component.default {
     constructor() {
-      super(...arguments);
+      super(...arguments); //disable context menu
 
       _initializerDefineProperty(this, "audio", _descriptor, this);
 
@@ -212,77 +218,150 @@
 
       _initializerDefineProperty(this, "done", _descriptor3, this);
 
-      _defineProperty(this, "size", 2);
+      _initializerDefineProperty(this, "startPos", _descriptor4, this);
 
-      _initializerDefineProperty(this, "mouseDownPos", _descriptor4, this);
+      _initializerDefineProperty(this, "markerDir", _descriptor5, this);
 
-      _initializerDefineProperty(this, "mousePos", _descriptor5, this);
+      _initializerDefineProperty(this, "markerLength", _descriptor6, this);
 
-      _initializerDefineProperty(this, "cellSize", _descriptor6, this);
+      _initializerDefineProperty(this, "cellSize", _descriptor7, this);
+
+      _initializerDefineProperty(this, "puzzle", _descriptor8, this);
 
       _defineProperty(this, "marking", false);
 
-      _initializerDefineProperty(this, "markers", _descriptor7, this);
+      _initializerDefineProperty(this, "foundWords", _descriptor9, this);
 
-      _defineProperty(this, "words", ['Derechos', 'Mujeres', 'Oportunidades', 'Igualdad', 'Discriminar', 'Género', 'Estereotipos']);
+      _defineProperty(this, "words", ['derechos', 'mujeres', 'oportunidades', 'igualdad', 'discriminar', 'género', 'estereotipos']);
 
-      this.size = this.args.size || 2; //preload svg
-
-      this.puzzle = wordfind.newPuzzle(this.words, {});
+      document.oncontextmenu = ev => {
+        ev.preventDefault();
+      };
     }
 
     start() {
       this.started = true;
       this.done = false;
+      this.puzzle = wordfind.newPuzzle(this.words, {});
+      this.foundWords = [];
     }
 
-    mouseDown(i, j, ev) {
-      this.mouseDownPos = {
-        i: i,
-        j: j
-      };
-      this.marking = true;
-      const r = ev.target.closest(".row");
-      this.cellSize = r.clientWidth / r.childElementCount;
+    getIJ(ev) {
+      const p = this.puzzleEl;
+      const x = ev.x - p.offsetLeft;
+      const y = ev.y - p.offsetTop;
+      const w = p.clientWidth;
+      const l = this.puzzle.length;
+      this.cellSize = w / l;
+      const i = Math.floor(x / w * l);
+      const j = Math.floor(y / w * l); //clamp i and j
+
+      return [Math.max(0, Math.min(i, l - 1)), Math.max(0, Math.min(j, l - 1))];
     }
 
-    mouseMove(i, j, ev) {
-      if (this.marking) this.mousePos = {
-        i: i,
-        j: j
-      };
+    mouseDown(ev) {
+      if (this.done) {
+        this.start();
+      } else {
+        this.audio.play('down');
+        this.puzzleEl = ev.target.closest('.puzzle');
+        const [i, j] = this.getIJ(ev);
+        this.startPos = {
+          i: i,
+          j: j
+        };
+        this.marking = true;
+      }
+    }
+
+    mouseMove(ev) {
+      if (this.marking) {
+        const [i, j] = this.getIJ(ev);
+        const s = this.startPos;
+        const di = i - s.i;
+        const dj = j - s.j; // calculate direction, clamping the angle between di and dj
+
+        this.markerDir = Math.round(Math.atan2(dj, di) / (Math.PI / 4));
+        const diag = Math.abs(this.markerDir) % 2; // calculate length of marker
+
+        this.markerLength = (diag ? Math.min : Math.max)(Math.abs(di), Math.abs(dj)) + 1;
+      }
     }
 
     mouseUp(ev) {
-      const s = this.mouseDownPos;
-      const e = this.mousePos;
-      let i = s.i,
-          j = s.j;
-      let word = this.puzzle[j][i];
+      if (this.marking) {
+        this.audio.play('up');
+        const s = this.startPos;
+        let l = this.markerLength;
+        let i = s.i,
+            j = s.j;
+        let word = '';
 
-      while (i !== e.i || j !== e.j) {
-        if (i > e.i) i--;
-        if (i < e.i) i++;
-        if (j > e.j) j--;
-        if (j < e.j) j++;
-        word += this.puzzle[j][i];
+        while (l--) {
+          word += this.puzzle[j][i];
+
+          switch (this.markerDir) {
+            case 0:
+              i++;
+              break;
+
+            case 1:
+              i++;
+              j++;
+              break;
+
+            case 2:
+              j++;
+              break;
+
+            case 3:
+              i--;
+              j++;
+              break;
+
+            case 4:
+              i--;
+              break;
+
+            case -3:
+              i--;
+              j--;
+              break;
+
+            case -2:
+              j--;
+              break;
+
+            case -1:
+              i++;
+              j--;
+              break;
+          }
+        }
+
+        this.checkWord(word);
+        this.startPos = null;
+        this.markerDir = 0;
+        this.markerLength = 0;
+        this.marking = false;
       }
-
-      console.log(word);
-      if (this.words.any(w => w === word)) this.markers = [...this.markers, {
-        word,
-        start: s,
-        end: e
-      }];
-      this.mouseDownPos = null;
-      this.mousePos = null;
-      this.marking = false;
     }
 
-    checkStatus(f, s) {
-      if (done) {
-        this.audio.play('win');
-        setTimeout(() => this.done = done, 2000);
+    checkWord(word) {
+      if (this.words.any(w => w === word)) {
+        if (!this.foundWords.any(m => m.word === word)) {
+          this.foundWords = [...this.foundWords, {
+            word,
+            start: this.startPos,
+            markerDir: this.markerDir,
+            markerLength: this.markerLength
+          }];
+
+          if (this.foundWords.length === this.words.length) {
+            this.audio.play('win');
+            setTimeout(() => this.done = true, 2000);
+          }
+        }
       }
     }
 
@@ -296,36 +375,48 @@
     enumerable: true,
     writable: true,
     initializer: function () {
-      return true;
+      return false;
     }
   }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "done", [Ember._tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
-    initializer: null
-  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "mouseDownPos", [Ember._tracked], {
+    initializer: function () {
+      return false;
+    }
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "startPos", [Ember._tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "mousePos", [Ember._tracked], {
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "markerDir", [Ember._tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "cellSize", [Ember._tracked], {
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "markerLength", [Ember._tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "markers", [Ember._tracked], {
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "cellSize", [Ember._tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "puzzle", [Ember._tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "foundWords", [Ember._tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return [];
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseDown", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseDown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseMove", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseMove"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseUp", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseUp"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "checkStatus", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "checkStatus"), _class.prototype)), _class));
+  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseDown", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseDown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseMove", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseMove"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseUp", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseUp"), _class.prototype)), _class));
   _exports.default = Cube;
 
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, Cube);
@@ -379,6 +470,22 @@
   }
 
   var _default = Ember.Helper.helper(appVersion);
+
+  _exports.default = _default;
+});
+;define("emberapp/helpers/word", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.Helper.helper(function word(params
+  /*, hash*/
+  ) {
+    return params[0].any(m => m.word === params[1]) ? 'found' : '';
+  });
 
   _exports.default = _default;
 });
@@ -510,23 +617,16 @@
   _exports.default = void 0;
 
   var _default = (0, _emberModifier.modifier)((element, params, hash) => {
-    const a = params[0];
-    const b = params[1];
-    const s = params[2];
+    const a = params[0]; // get direction
 
-    if (!a || !b) {
-      element.setAttribute('style', ``);
-      return;
-    }
+    const d = params[1]; // get length of marker
 
-    const di = b.i - a.i;
-    const dj = b.j - a.j; // calculate direction, clamping the angle between di and dj
+    const l = params[2];
+    const s = params[3];
+    const diag = Math.abs(d) % 2; //calculate width of marker
 
-    const dir = Math.round(Math.atan2(dj, di) / (Math.PI / 4)); // calculate length of marker
-
-    const l = Math.max(Math.abs(di), Math.abs(dj)) + 1;
-    const w = (Math.abs(dir) % 2 ? Math.sqrt(2 * l * l) - 0.3 : l) * s;
-    element.setAttribute('style', `top: ${s * a.j}px; left: ${s * a.i}px;height:${s}px;width:${w}px;transform:rotate(${dir * 45}deg);transform-origin:${s / 2}px;`);
+    const w = (diag ? Math.sqrt(2 * l * l) - 0.3 : l) * s;
+    element.setAttribute('style', !a ? '' : `top: ${s * a.j}px; left: ${s * a.i}px;height:${s}px;width:${w}px;transform:rotate(${d * 45}deg);transform-origin:${s / 2}px;`);
   });
 
   _exports.default = _default;
@@ -578,12 +678,12 @@
   //sounds
   const sounds = {
     busy: false,
-    drag: new _howler.Howl({
-      src: ['./audio/cube-down.mp3'],
+    down: new _howler.Howl({
+      src: ['./audio/down.mp3'],
       volume: 0.4
     }),
-    dragEnter: new _howler.Howl({
-      src: ['./audio/cube-up.mp3']
+    up: new _howler.Howl({
+      src: ['./audio/up.mp3']
     }),
     drop: new _howler.Howl({
       src: ['./audio/animation-down-1.mp3']
@@ -596,6 +696,8 @@
   class AudioService extends Ember.Service {
     // play sound wrapper
     play(s) {
+      return;
+
       if (!sounds.busy) {
         sounds.busy = true;
         sounds[s].play(); // prevent double trigger with a short timeout
@@ -649,7 +751,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+61e696e7"});
+            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+10b460ea"});
           }
         
 //# sourceMappingURL=emberapp.map

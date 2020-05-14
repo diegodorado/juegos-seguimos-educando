@@ -10,7 +10,7 @@ body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  font-family: "Boogaloo", cursive;
+  font-family: "Fira Code", monospace;
   font-size: 100%;
   position: relative;
 }
@@ -25,7 +25,7 @@ body * {
   transform: translate(-50%, -50%);
   cursor: pointer;
   width: 80vmin;
-  filter: drop-shadow(10px 10px 5px black);
+  filter: drop-shadow(0px 10px 5px black);
 }
 .splash img {
   width: 60vmin;
@@ -33,11 +33,11 @@ body * {
   margin: 0 auto;
 }
 .splash h3 {
-  font-size: 10vmin;
+  font-size: 8vmin;
   margin: 0.2em;
 }
 .splash p {
-  font-size: 5vmin;
+  font-size: 4vmin;
   margin: 0.2em;
 }
 .splash h3, .splash p {
@@ -45,14 +45,23 @@ body * {
   color: white;
 }
 
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 .puzzle {
+  cursor: pointer;
   height: 92vmin;
-  left: 50%;
-  margin: -46vmin;
-  position: absolute;
-  top: 50%;
+  max-height: 700px;
   width: 92vmin;
-  box-shadow: black 4vmin 4vmin 10px 0px;
+  max-width: 700px;
+  margin: 4vmin auto;
+  position: relative;
+  box-shadow: black 1vmin 1vmin 10px 0px;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -74,15 +83,29 @@ body * {
 }
 .puzzle .row .cell text {
   text-anchor: middle;
-  font-family: monospace;
   text-transform: uppercase;
-  font-size: 0.6em;
+  font-size: 0.5em;
 }
-.puzzle .markers {
+.puzzle .marker {
   position: absolute;
   background: rgba(255, 0, 0, 0.5);
   touch-action: none;
   pointer-events: none;
+}
+
+.words {
+  touch-action: none;
+  pointer-events: none;
+}
+.words span {
+  display: inline-block;
+  margin: 0 0.5em;
+  font-size: 2em;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: white;
+}
+.words span.found {
+  text-decoration: line-through;
 }
 
 @keyframes gradient {
