@@ -4,8 +4,8 @@ import {Howl} from 'howler'
 //sounds
 const sounds = {
   busy: false,
-  drag: new Howl({src:['./audio/cube-down.mp3'],volume: 0.4}),
-  dragEnter: new Howl({src:['./audio/cube-up.mp3']}),
+  down: new Howl({src:['./audio/down.mp3'],volume: 0.4}),
+  up: new Howl({src:['./audio/up.mp3']}),
   drop: new Howl({src:['./audio/animation-down-1.mp3']}),
   win: new Howl({src:['./audio/win.mp3']}),
 }
@@ -13,6 +13,7 @@ const sounds = {
 export default class AudioService extends Service {
   // play sound wrapper
   play(s){
+    return
     if (!sounds.busy){
       sounds.busy = true
       sounds[s].play()

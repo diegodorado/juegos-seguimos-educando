@@ -1,20 +1,15 @@
 {{#unless this.started}}
   <div class="splash" {{on 'click' this.start}} >
-    <h3>¿Cómo nos cuidamos?</h3>
+    <h3>Sopa de Letras</h3>
     <p>TOCA LA PANTALLA PARA COMENZAR</p>
   </div>
 {{else}}
-  {{#if this.done}}
-    <div class="splash" {{on 'click' this.start}} >
-      <h3>Quedate en casa</h3>
-      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
-    </div>
-  {{else}}
-    <div class="puzzle">
-      {{#each this.puzzle as |row j|}}
+  <div class="canvas" {{on 'pointermove' this.mouseMove}} {{on 'pointerup' this.mouseUp}} >
+    <div class="puzzle" {{on 'pointerdown' this.mouseDown}} >
+      {{#each this.puzzle as |row|}}
         <div class="row">
-          {{#each row as |cell i|}}
-            <div class="cell" {{on 'mousedown' (fn this.mouseDown i j)}} {{on 'mousemove' (fn this.mouseMove i j)}} {{on 'mouseup' (fn this.mouseUp i j)}} >
+          {{#each row as |cell|}}
+            <div class="cell">
               <svg viewBox="0 0 10 10">
                 <text x="5" y="8">{{cell}}</text>
               </svg>
@@ -22,10 +17,21 @@
           {{/each}}
         </div>
       {{/each}}
-      <div class="markers" {{marker this.mouseDownPos this.mousePos this.cellSize }}></div>
-      {{#each this.markers as |m j|}}
-        <div class="markers" {{marker m.start m.end this.cellSize }}></div>
+      <div class="marker" {{marker this.startPos this.markerDir this.markerLength this.cellSize }}></div>
+      {{#each this.foundWords as |m|}}
+        <div class="marker" {{marker m.start m.markerDir m.markerLength this.cellSize }}></div>
       {{/each}}
+    </div>
+    <div class="words">
+      {{#each this.words as |w|}}
+        <span class={{word this.foundWords w}}>{{w}}</span>
+      {{/each}}
+    </div>
+  </div>
+  {{#if this.done}}
+    <div class="splash">
+      <h3>¡Muy bien!</h3>
+      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
     </div>
   {{/if}}
 {{/unless}}
