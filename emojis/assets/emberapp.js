@@ -61,7 +61,7 @@
 
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
-      <div class="emotion {{if done 'done' ''}}">
+      <div class="emotion">
       <img src="./svg/{{args.name}}.svg" />
     {{#if done}}
       <h3 class="word">{{args.name}}</h3>
@@ -76,8 +76,8 @@
   
   */
   {
-    id: "zDgHYuT2",
-    block: "{\"symbols\":[\"l\"],\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",true],[13,\"class\",[32,[\"emotion \",[31,24,2,[27,[26,6,\"CallHead\"],[]],[[27,[26,5,\"Expression\"],[]],\"done\",\"\"],null]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[13,\"src\",[32,[\"./svg/\",[27,[26,2,\"AppendSingleId\"],[\"name\"]],\".svg\"]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,6,\"BlockHead\"],[]],[[27,[26,5,\"Expression\"],[]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"h3\",true],[12,\"class\",\"word\",null],[10],[1,0,0,0,[27,[26,2,\"Expression\"],[\"name\"]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"letters\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[26,0,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,4,\"BlockHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[27,[26,2,\"Expression\"],[\"letters\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"span\",true],[12,\"class\",\"draggable\",null],[10],[1,0,0,0,[27,[24,1],[]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]],[11],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"makeDraggable\",\"did-insert\",\"args\",\"-track-array\",\"each\",\"done\",\"if\"]}",
+    id: "cv/8Naxw",
+    block: "{\"symbols\":[\"l\"],\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",true],[12,\"class\",\"emotion\",null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[13,\"src\",[32,[\"./svg/\",[27,[26,2,\"AppendSingleId\"],[\"name\"]],\".svg\"]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,6,\"BlockHead\"],[]],[[27,[26,5,\"Expression\"],[]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"h3\",true],[12,\"class\",\"word\",null],[10],[1,0,0,0,[27,[26,2,\"Expression\"],[\"name\"]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"letters\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[26,0,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,4,\"BlockHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[31,0,0,[27,[26,3,\"CallHead\"],[]],[[27,[26,2,\"Expression\"],[\"letters\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"span\",true],[12,\"class\",\"draggable\",null],[10],[1,0,0,0,[27,[24,1],[]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]],[11],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"makeDraggable\",\"did-insert\",\"args\",\"-track-array\",\"each\",\"done\",\"if\"]}",
     meta: {
       moduleName: "emberapp/components/emotion.hbs"
     }
@@ -116,7 +116,7 @@
             this.args.onWin();
             this.done = true;
           }
-        }, 250);
+        }, 100);
         this.audio.play('drop');
       });
     }
@@ -161,27 +161,25 @@
     {{#unless this.started}}
     <div class="splash" {{on 'click' this.start}} >
       <img src="./svg/intro.svg" />
-      <h3>Mi sueldo</h3>
+      <h3>¡Emojiones!</h3>
       <p>Ordena las letras de las emociones</p>
       <p>TOCA LA PANTALLA PARA COMENZAR</p>
     </div>
   {{else}}
     {{#if this.done}}
-      <div class="splash" {{on 'click' this.start}} >
+      <div class="splash" {{on 'click' start}} >
         <img src="./svg/end.svg" />
-        <h3>Quedate en casa</h3>
+        <h3>¡Terminaste!</h3>
         <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
       </div>
     {{else}}
       {{#if this.guessed}}
-        <div class="splash" {{on 'click' onNext}} >
+        <div class="splash" {{on 'click' next}} >
           <img src="./svg/next.svg" />
-          <h3>¡Otra!</h3>
+          <h3>Continuar</h3>
         </div>
       {{else}}
-        <div class="canvas">
-          <Emotion @name={{emotion.name}} @letters={{emotion.letters}} @onWin={{onWin}} />
-        </div>
+        <Emotion @name={{emotion.name}} @letters={{emotion.letters}} @onWin={{onWin}} />
       {{/if}}
     {{/if}}
   {{/unless}}
@@ -189,8 +187,8 @@
   
   */
   {
-    id: "LsYqIWU+",
-    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Mi sueldo\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Ordena las letras de las emociones\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"Quedate en casa\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"guessed\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n        \"],[9,\"img\",true],[12,\"src\",\"./svg/next.svg\",null],[10],[11],[1,1,0,0,\"\\n        \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Otra!\"],[11],[1,1,0,0,\"\\n      \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"      \"],[9,\"div\",true],[12,\"class\",\"canvas\",null],[10],[1,1,0,0,\"\\n        \"],[7,\"emotion\",[],[[\"@name\",\"@letters\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[\"name\"]],[27,[26,0,\"AppendSingleId\"],[\"letters\"]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n      \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"emotion\",\"onWin\",\"onNext\",\"on\",\"if\",\"unless\"]}",
+    id: "0jEycx0U",
+    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Emojiones!\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Ordena las letras de las emociones\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,5,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Terminaste!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"guessed\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n        \"],[9,\"img\",true],[12,\"src\",\"./svg/next.svg\",null],[10],[11],[1,1,0,0,\"\\n        \"],[9,\"h3\",true],[10],[1,1,0,0,\"Continuar\"],[11],[1,1,0,0,\"\\n      \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"      \"],[7,\"emotion\",[],[[\"@name\",\"@letters\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[\"name\"]],[27,[26,0,\"AppendSingleId\"],[\"letters\"]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"emotion\",\"onWin\",\"next\",\"on\",\"if\",\"start\",\"unless\"]}",
     meta: {
       moduleName: "emberapp/components/game.hbs"
     }
@@ -221,17 +219,25 @@
 
       _initializerDefineProperty(this, "demotions", _descriptor6, this);
 
-      _defineProperty(this, "emotions", ['bronca', 'cagazo', 'panico', 'duda', 'esperanza', 'optimismo', 'seguridad', 'susto', 'terror']);
+      _defineProperty(this, "emotions", ['alegria', 'miedo', 'tristeza', 'duda', 'enojo']);
 
-      this.emotions.forEach(s => new Image().src = `svg/${s}.svg`); //shuffle everything
-
-      this.demotions = shuffle(this.emotions).map(e => ({
-        name: e,
-        letters: shuffle(e.split(''))
-      }));
+      const svgs = [...this.emotions, 'intro', 'next', 'end'];
+      svgs.forEach(s => new Image().src = `svg/${s}.svg`);
     }
 
     start() {
+      //shuffle everything
+      this.demotions = shuffle(this.emotions).map(e => {
+        let l = e.split('');
+
+        while (e === l.join('')) l = shuffle(l);
+
+        console.log(l);
+        return {
+          name: e,
+          letters: l
+        };
+      });
       this.index = 0;
       this.started = true;
       this.done = false;
@@ -241,11 +247,11 @@
     onWin() {
       this.audio.play('win');
       setTimeout(() => {
-        this.guessed = true;
+        if (this.index === this.demotions.length - 1) this.done = true;else this.guessed = true;
       }, 2000);
     }
 
-    onNext() {
+    next() {
       this.audio.play('drop');
       this.guessed = false;
       this.index++;
@@ -253,10 +259,6 @@
 
     get emotion() {
       return this.demotions[this.index];
-    }
-
-    get solved() {
-      return this.demotions[this.index].name === 'cagazo';
     }
 
   }, _temp), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "audio", [_dec], {
@@ -297,7 +299,7 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onWin", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "onWin"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onNext", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "onNext"), _class.prototype)), _class));
+  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onWin", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "onWin"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "next", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "next"), _class.prototype)), _class));
   _exports.default = Game;
 
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, Game);
@@ -559,8 +561,8 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "DZRG6+qJ",
-    "block": "{\"symbols\":[],\"statements\":[[7,\"game\",[],[[],[]],null],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
+    "id": "fosBydN+",
+    "block": "{\"symbols\":[],\"statements\":[[9,\"div\",true],[12,\"id\",\"canvas\",null],[10],[1,1,0,0,\"\\n  \"],[7,\"game\",[],[[],[]],null],[1,1,0,0,\"\\n\"],[11],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
     "meta": {
       "moduleName": "emberapp/templates/application.hbs"
     }
