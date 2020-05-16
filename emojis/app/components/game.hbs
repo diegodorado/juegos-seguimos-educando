@@ -1,0 +1,26 @@
+{{#unless this.started}}
+  <div class="splash" {{on 'click' this.start}} >
+    <img src="./svg/intro.svg" />
+    <h3>¡Emojiones!</h3>
+    <p>Ordena las letras de las emociones</p>
+    <p>TOCA LA PANTALLA PARA COMENZAR</p>
+  </div>
+{{else}}
+  {{#if this.done}}
+    <div class="splash" {{on 'click' start}} >
+      <img src="./svg/end.svg" />
+      <h3>¡Terminaste!</h3>
+      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
+    </div>
+  {{else}}
+    {{#if this.guessed}}
+      <div class="splash" {{on 'click' next}} >
+        <img src="./svg/next.svg" />
+        <h3>Continuar</h3>
+      </div>
+    {{else}}
+      <Emotion @name={{emotion.name}} @letters={{emotion.letters}} @onWin={{onWin}} />
+    {{/if}}
+  {{/if}}
+{{/unless}}
+

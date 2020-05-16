@@ -1,0 +1,57 @@
+{{#unless started}}
+  {{#if (eq index 0)}}
+    <div class="splash" {{on 'click' next}} >
+      <img src="./svg/intro.svg" />
+      <h3>Derechos Civiles y Políticos</h3>
+      <p>¿Cuánto sabemos de la historia de nuestros derechos?</p>
+      <p>TOCA LA PANTALLA PARA COMENZAR</p>
+    </div>
+  {{/if}}
+  {{#if (eq index 1)}}
+    <div class="splash" {{on 'click' next}} >
+      <p class="text">
+        Este test nos permitirá poner a prueba cuánto sabemos acerca de la historia del marco legal que regula la Argentina en relación a los derechos de las mujeres.
+        <br/>
+        <br/>
+        Conocerlos tiene que ver con entender la importancia del orden constitucional y la vida democrática, e implica saber defender los derechos humanos y respetar la propia identidad y la de los otros.
+      </p>
+      <img style="width:40%" src="./svg/next.svg" />
+    </div>
+  {{/if}}
+  {{#if (eq index 2)}}
+    <div class="splash" {{on 'click' next}} >
+      <p class="text">
+        Seleccionen la respuesta correcta. Cuando lo hayan hecho, podrán ver algunas aclaraciones sobre cada ley y derecho.
+        <br/>
+        <br/>
+        Si prestan atención notarán cómo ha sido la evolución del reconocimiento de algunos derechos de las mujeres, quienes históricamente han estado en desventaja respecto de los varones, y de otros derechos vinculados a las familias.
+      </p>
+      <img style="width:40%" src="./svg/next.svg" />
+    </div>
+  {{/if}}
+{{else}}
+  {{#if done}}
+    <div class="splash" {{on 'click' start}} >
+      <img src="./svg/end.svg" />
+      <h3>¡Terminaste!</h3>
+      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
+    </div>
+  {{else}}
+    {{#if showText}}
+      <div class="splash" {{on 'click' next}} >
+        <p class="text">{{current.text}}</p>
+        <img style="width:40%" src="./svg/next.svg" />
+      </div>
+    {{else}}
+      <div class="question {{if answered 'answered' ''}}">
+        <h4>{{current.question}}</h4>
+        <div class="answers">
+          {{#each current.answers as |a|}}
+            <span class="{{if (eq a guess) 'guess' ''}} {{if (eq a current.answer) 'correct' ''}}" {{on 'click' (fn answer a)}}>{{a}}</span>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+{{/unless}}
+

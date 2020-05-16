@@ -1,0 +1,12 @@
+  <div class="emotion">
+    <img src="./svg/{{args.name}}.svg" />
+  {{#if done}}
+    <h3 class="word">{{args.name}}</h3>
+  {{else}}
+    <div class="letters" {{did-insert makeDraggable}} >
+      {{#each args.letters as |l|}}
+        <span class="draggable" >{{l}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
