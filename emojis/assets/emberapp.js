@@ -161,16 +161,16 @@
     {{#unless this.started}}
     <div class="splash" {{on 'click' this.start}} >
       <img src="./svg/intro.svg" />
-      <h3>¡Emojiones!</h3>
-      <p>Ordena las letras de las emociones</p>
-      <p>TOCA LA PANTALLA PARA COMENZAR</p>
+      <h3>Emociones Dibujadas</h3>
+      <p>Ordena las letras de las palabras y descubrí las emociones de los emojis.</p>
+      <p>TOCÁ LA PANTALLA PARA COMENZAR</p>
     </div>
   {{else}}
     {{#if this.done}}
       <div class="splash" {{on 'click' start}} >
         <img src="./svg/end.svg" />
         <h3>¡Terminaste!</h3>
-        <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
+        <p>TOCÁ LA PANTALLA PARA VOLVER A JUGAR</p>
       </div>
     {{else}}
       {{#if this.guessed}}
@@ -187,8 +187,8 @@
   
   */
   {
-    id: "0jEycx0U",
-    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Emojiones!\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Ordena las letras de las emociones\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,5,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Terminaste!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"guessed\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n        \"],[9,\"img\",true],[12,\"src\",\"./svg/next.svg\",null],[10],[11],[1,1,0,0,\"\\n        \"],[9,\"h3\",true],[10],[1,1,0,0,\"Continuar\"],[11],[1,1,0,0,\"\\n      \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"      \"],[7,\"emotion\",[],[[\"@name\",\"@letters\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[\"name\"]],[27,[26,0,\"AppendSingleId\"],[\"letters\"]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"emotion\",\"onWin\",\"next\",\"on\",\"if\",\"start\",\"unless\"]}",
+    id: "kvscodjU",
+    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Emociones Dibujadas\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Ordena las letras de las palabras y descubr\xED las emociones de los emojis.\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,5,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Terminaste!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"guessed\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"      \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n        \"],[9,\"img\",true],[12,\"src\",\"./svg/next.svg\",null],[10],[11],[1,1,0,0,\"\\n        \"],[9,\"h3\",true],[10],[1,1,0,0,\"Continuar\"],[11],[1,1,0,0,\"\\n      \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"      \"],[7,\"emotion\",[],[[\"@name\",\"@letters\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[\"name\"]],[27,[26,0,\"AppendSingleId\"],[\"letters\"]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"emotion\",\"onWin\",\"next\",\"on\",\"if\",\"start\",\"unless\"]}",
     meta: {
       moduleName: "emberapp/components/game.hbs"
     }
@@ -219,7 +219,7 @@
 
       _initializerDefineProperty(this, "demotions", _descriptor6, this);
 
-      _defineProperty(this, "emotions", ['alegria', 'miedo', 'tristeza', 'duda', 'enojo']);
+      _defineProperty(this, "emotions", ['alegría', 'miedo', 'tristeza', 'duda', 'enojo']);
 
       const svgs = [...this.emotions, 'intro', 'next', 'end'];
       svgs.forEach(s => new Image().src = `svg/${s}.svg`);
@@ -232,7 +232,6 @@
 
         while (e === l.join('')) l = shuffle(l);
 
-        console.log(l);
         return {
           name: e,
           letters: l
@@ -593,7 +592,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+ba8cbd17"});
+            require("emberapp/app")["default"].create({"name":"emberapp","version":"0.0.0+fd72926c"});
           }
         
 //# sourceMappingURL=emberapp.map
