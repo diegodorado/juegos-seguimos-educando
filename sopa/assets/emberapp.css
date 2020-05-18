@@ -18,48 +18,43 @@ body * {
   -webkit-tap-highlight-color: transparent;
 }
 
+#canvas {
+  --w: calc(min(100vw,(9/16)*100vh));
+  width: var(--w);
+  margin: auto;
+}
+
 .splash {
-  padding: 40vh 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 4vmin auto;
   cursor: pointer;
-  width: 80vmin;
-  filter: drop-shadow(0px 10px 5px black);
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(10px 10px 5px black);
 }
 .splash img {
-  width: 60vmin;
+  width: 100%;
   display: block;
   margin: 0 auto;
 }
-.splash h3 {
-  font-size: 8vmin;
-  margin: 0.2em;
-}
-.splash p {
-  font-size: 4vmin;
-  margin: 0.2em;
-}
-.splash h3, .splash p {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  color: white;
+
+h3 {
+  font-size: calc(var(--w)/10);
 }
 
-.canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+p {
+  font-size: calc(var(--w)*0.05);
+}
+
+h3, p {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: white;
+  margin: 0.2em;
 }
 
 .puzzle {
   cursor: pointer;
-  height: 92vmin;
-  max-height: 700px;
-  width: 92vmin;
-  max-width: 700px;
+  width: calc(var(--w));
+  height: calc(var(--w));
   margin: 4vmin auto;
   position: relative;
   box-shadow: black 1vmin 1vmin 10px 0px;
