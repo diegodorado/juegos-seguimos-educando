@@ -54,19 +54,18 @@ h3, p {
 .draggable {
   filter: drop-shadow(6px 6px 5px black);
   border-radius: calc(var(--w)/100);
+  margin: calc(var(--w)*0.01) 0;
   text-transform: uppercase;
   text-align: center;
   width: calc(var(--w));
   background: #e7e7e7;
+  border: 4px solid transparent;
   display: inline-block;
   height: calc(var(--w)/10);
   font-size: calc(var(--w)*0.03);
   line-height: calc(var(--w)/10);
   cursor: pointer;
   transition: background 0.5s linear;
-}
-.draggable.draggable--over {
-  background-color: #ee7752;
 }
 .draggable.correct {
   background-color: #ee7752;
