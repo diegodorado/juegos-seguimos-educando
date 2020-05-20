@@ -95,9 +95,13 @@
 
       _initializerDefineProperty(this, "facts", _descriptor2, this);
 
-      this.facts = shuffle(this.args.facts); //shuffle everything
-      //while(this.facts.join('')===facts.join(''))
-      //  this.facts = shuffle(facts)
+      const f = this.args.facts; //shuffle everything
+
+      this.facts = shuffle(f);
+
+      while (this.facts.any((x, i) => x === f[i])) {
+        this.facts = shuffle(f);
+      }
     }
 
     makeDraggable(el) {
