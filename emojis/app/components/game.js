@@ -23,7 +23,7 @@ export default class Game  extends Component {
   @tracked index = 0
   @tracked demotions
 
-  emotions = ['alegria','miedo','tristeza','duda','enojo']
+  emotions = ['alegría','miedo','tristeza','duda','enojo']
 
   constructor() {
     super(...arguments)
@@ -39,7 +39,6 @@ export default class Game  extends Component {
       let l = e.split('')
       while(e===l.join(''))
         l = shuffle(l)
-      console.log(l)
       return {name:e, letters: l}
     })
     this.index = 0

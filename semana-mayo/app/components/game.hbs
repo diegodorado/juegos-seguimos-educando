@@ -1,8 +1,8 @@
 {{#unless this.started}}
   <div class="splash" {{on 'click' this.start}} >
     <img src="./svg/intro.svg" />
-    <h3>Emociones Dibujadas</h3>
-    <p>Ordená las letras y descubrí las emociones</p>
+    <h3>Semana de Mayo</h3>
+    <p>Arrastrá y ordená los sucesos de la Semana de Mayo.</p>
     <p>TOCÁ LA PANTALLA PARA COMENZAR</p>
   </div>
 {{else}}
@@ -13,14 +13,7 @@
       <p>TOCÁ LA PANTALLA PARA VOLVER A JUGAR</p>
     </div>
   {{else}}
-    {{#if this.guessed}}
-      <div class="splash" {{on 'click' next}} >
-        <img src="./svg/next.svg" />
-        <h3>Continuar</h3>
-      </div>
-    {{else}}
-      <Emotion @name={{emotion.name}} @letters={{emotion.letters}} @onWin={{onWin}} />
-    {{/if}}
+    <Fact @facts={{facts}} @onWin={{onWin}} />
   {{/if}}
 {{/unless}}
 

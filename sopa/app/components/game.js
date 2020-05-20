@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
-export default class Cube  extends Component {
+export default class Game  extends Component {
 
   @inject('audio') audio
 
@@ -39,8 +39,21 @@ export default class Cube  extends Component {
   start(){
     this.started = true
     this.done = false
-    this.puzzle = wordfind.newPuzzle(this.words,{})
+    const settings = {orientations: ['horizontal','vertical','diagonal']}
+    this.puzzle = wordfind.newPuzzle(this.words,settings)
     this.foundWords = []
+  }
+
+  @action
+  solve(){
+    const solution = wordfind.solve(this.puzzle,this.words)
+    let foundWords = []
+    solution.found.forEach( w => {
+      const dir = {'horizontal':0,'diagonal':1,'vertical':2}[w.orientation]
+      foundWords.push({word: w.word,start:{i:w.x,j:w.y}, markerDir: dir, markerLength: w.overlap})
+    })
+    this.foundWords = foundWords
+    setTimeout( () => this.done = true, 5000)
   }
 
   getIJ(ev){

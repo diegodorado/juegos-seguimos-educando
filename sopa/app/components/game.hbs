@@ -1,37 +1,44 @@
 {{#unless this.started}}
   <div class="splash" {{on 'click' this.start}} >
-    <h3>Sopa de Letras</h3>
-    <p>TOCA LA PANTALLA PARA COMENZAR</p>
+    <img src="./svg/intro.svg" />
+    <h3>SOPA DE LETRAS</h3>
+    <p>¡ABAJO LOS ESTEREOTIPOS! ¡ARRIBA LA IGUALDAD!</p>
+    <p>TOCÁ LA PANTALLA PARA COMENZAR</p>
   </div>
 {{else}}
-  <div class="canvas" {{on 'pointermove' this.mouseMove}} {{on 'pointerup' this.mouseUp}} >
-    <div class="puzzle" {{on 'pointerdown' this.mouseDown}} >
-      {{#each this.puzzle as |row|}}
-        <div class="row">
-          {{#each row as |cell|}}
-            <div class="cell">
-              <svg viewBox="0 0 10 10">
-                <text x="5" y="8">{{cell}}</text>
-              </svg>
-            </div>
-          {{/each}}
-        </div>
-      {{/each}}
-      <div class="marker" {{marker this.startPos this.markerDir this.markerLength this.cellSize }}></div>
-      {{#each this.foundWords as |m|}}
-        <div class="marker" {{marker m.start m.markerDir m.markerLength this.cellSize }}></div>
-      {{/each}}
-    </div>
-    <div class="words">
-      {{#each this.words as |w|}}
-        <span class={{word this.foundWords w}}>{{w}}</span>
-      {{/each}}
-    </div>
-  </div>
   {{#if this.done}}
-    <div class="splash">
-      <h3>¡Muy bien!</h3>
-      <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
+    <div class="splash" {{on 'click' this.start}} >
+      <img src="./svg/end.svg" />
+      <h3>¡MUY BIEN!</h3>
+      <p>TOCÁ LA PANTALLA PARA VOLVER A JUGAR</p>
+    </div>
+  {{else}}
+    <div class="canvas" {{on 'pointermove' this.mouseMove}} {{on 'pointerup' this.mouseUp}} >
+      <div class="puzzle" {{on 'pointerdown' this.mouseDown}} >
+        {{#each this.puzzle as |row|}}
+          <div class="row">
+            {{#each row as |cell|}}
+              <div class="cell">
+                <svg viewBox="0 0 10 10">
+                  <text x="5" y="8">{{filterAcute cell}}</text>
+                </svg>
+              </div>
+            {{/each}}
+          </div>
+        {{/each}}
+        <div class="marker" {{marker this.startPos this.markerDir this.markerLength this.cellSize }}></div>
+        {{#each this.foundWords as |m|}}
+          <div class="marker" {{marker m.start m.markerDir m.markerLength this.cellSize }}></div>
+        {{/each}}
+      </div>
+      <div class="words">
+        {{#each this.words as |w|}}
+          <span class={{word this.foundWords w}}>{{w}}</span>
+        {{/each}}
+      </div>
+      {{#if this.cellSize}}
+        <button class="solve" {{on 'click' this.solve}} >RESOLVER</button>
+      {{/if}}
     </div>
   {{/if}}
 {{/unless}}
