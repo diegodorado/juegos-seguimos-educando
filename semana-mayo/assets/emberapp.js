@@ -180,7 +180,7 @@
     <div class="splash" {{on 'click' this.start}} >
       <img src="./svg/intro.svg" />
       <h3>Semana de Mayo</h3>
-      <p>Arrastrá y ordená los sucesos de la Semana de mayo.</p>
+      <p>Arrastrá y ordená los sucesos de la Semana de Mayo.</p>
       <p>TOCÁ LA PANTALLA PARA COMENZAR</p>
     </div>
   {{else}}
@@ -198,8 +198,8 @@
   
   */
   {
-    id: "pej5WYAn",
-    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Semana de Mayo\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Arrastr\xE1 y orden\xE1 los sucesos de la Semana de mayo.\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Terminaste!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[7,\"fact\",[],[[\"@facts\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"facts\",\"onWin\",\"start\",\"on\",\"if\",\"unless\"]}",
+    id: "GtceB7xI",
+    block: "{\"symbols\":[],\"statements\":[[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Semana de Mayo\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"Arrastr\xE1 y orden\xE1 los sucesos de la Semana de Mayo.\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,4,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,3,\"ModifierHead\"],[]],[\"click\",[27,[26,2,\"Expression\"],[]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Terminaste!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[7,\"fact\",[],[[\"@facts\",\"@onWin\"],[[27,[26,0,\"AppendSingleId\"],[]],[27,[26,1,\"AppendSingleId\"],[]]]],null],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"facts\",\"onWin\",\"start\",\"on\",\"if\",\"unless\"]}",
     meta: {
       moduleName: "emberapp/components/game.hbs"
     }
