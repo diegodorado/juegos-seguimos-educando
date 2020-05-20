@@ -64,16 +64,16 @@
     {{#unless this.started}}
     <div class="splash" {{on 'click' this.start}} >
       <img src="./svg/intro.svg" />
-      <h3>Sopa de Letras</h3>
-      <p>¡Abajo los estereotipos! ¡Arriba la igualdad!</p>
-      <p>TOCA LA PANTALLA PARA COMENZAR</p>
+      <h3>SOPA DE LETRAS</h3>
+      <p>¡ABAJO LOS ESTEREOTIPOS! ¡ARRIBA LA IGUALDAD!</p>
+      <p>TOCÁ LA PANTALLA PARA COMENZAR</p>
     </div>
   {{else}}
     {{#if this.done}}
       <div class="splash" {{on 'click' this.start}} >
         <img src="./svg/end.svg" />
-        <h3>¡Muy bien!</h3>
-        <p>TOCA LA PANTALLA PARA VOLVER A JUGAR</p>
+        <h3>¡MUY BIEN!</h3>
+        <p>TOCÁ LA PANTALLA PARA VOLVER A JUGAR</p>
       </div>
     {{else}}
       <div class="canvas" {{on 'pointermove' this.mouseMove}} {{on 'pointerup' this.mouseUp}} >
@@ -83,7 +83,7 @@
               {{#each row as |cell|}}
                 <div class="cell">
                   <svg viewBox="0 0 10 10">
-                    <text x="5" y="8">{{cell}}</text>
+                    <text x="5" y="8">{{filterAcute cell}}</text>
                   </svg>
                 </div>
               {{/each}}
@@ -99,6 +99,9 @@
             <span class={{word this.foundWords w}}>{{w}}</span>
           {{/each}}
         </div>
+        {{#if this.cellSize}}
+          <button class="solve" {{on 'click' this.solve}} >RESOLVER</button>
+        {{/if}}
       </div>
     {{/if}}
   {{/unless}}
@@ -106,8 +109,8 @@
   
   */
   {
-    id: "oLpDO69Q",
-    block: "{\"symbols\":[\"w\",\"m\",\"row\",\"cell\"],\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"Sopa de Letras\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"\xA1Abajo los estereotipos! \xA1Arriba la igualdad!\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,5,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1Muy bien!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOCA LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"canvas\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointermove\",[27,[24,0],[\"mouseMove\"]]],null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointerup\",[27,[24,0],[\"mouseUp\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"div\",false],[23,\"class\",\"puzzle\",null],[3,0,0,[27,[26,4,\"ModifierHead\"],[]],[\"pointerdown\",[27,[24,0],[\"mouseDown\"]]],null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"puzzle\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"div\",true],[12,\"class\",\"row\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,3],[]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"              \"],[9,\"div\",true],[12,\"class\",\"cell\",null],[10],[1,1,0,0,\"\\n                \"],[9,\"svg\",true],[12,\"viewBox\",\"0 0 10 10\",null],[10],[1,1,0,0,\"\\n                  \"],[9,\"text\",true],[12,\"x\",\"5\",null],[12,\"y\",\"8\",null],[10],[1,0,0,0,[27,[24,4],[]]],[11],[1,1,0,0,\"\\n                \"],[11],[1,1,0,0,\"\\n              \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[4]}]]],[1,1,0,0,\"          \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[3]}]]],[1,1,0,0,\"        \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[24,0],[\"startPos\"]],[27,[24,0],[\"markerDir\"]],[27,[24,0],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,1,\"ModifierHead\"],[]],[[27,[24,2],[\"start\"]],[27,[24,2],[\"markerDir\"]],[27,[24,2],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[2]}]]],[1,1,0,0,\"      \"],[11],[1,1,0,0,\"\\n      \"],[9,\"div\",true],[12,\"class\",\"words\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,3,\"BlockHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[31,0,0,[27,[26,2,\"CallHead\"],[]],[[27,[24,0],[\"words\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"span\",true],[13,\"class\",[31,1311,4,[27,[26,0,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]],[27,[24,1],[]]],null],null],[10],[1,0,0,0,[27,[24,1],[]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1]}]]],[1,1,0,0,\"      \"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"word\",\"marker\",\"-track-array\",\"each\",\"on\",\"if\",\"unless\"]}",
+    id: "bm7a1RZJ",
+    block: "{\"symbols\":[\"w\",\"m\",\"row\",\"cell\"],\"statements\":[[5,[27,[26,7,\"BlockHead\"],[]],[[27,[24,0],[\"started\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"  \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n    \"],[9,\"img\",true],[12,\"src\",\"./svg/intro.svg\",null],[10],[11],[1,1,0,0,\"\\n    \"],[9,\"h3\",true],[10],[1,1,0,0,\"SOPA DE LETRAS\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"\xA1ABAJO LOS ESTEREOTIPOS! \xA1ARRIBA LA IGUALDAD!\"],[11],[1,1,0,0,\"\\n    \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA COMENZAR\"],[11],[1,1,0,0,\"\\n  \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"done\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"splash\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"start\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"img\",true],[12,\"src\",\"./svg/end.svg\",null],[10],[11],[1,1,0,0,\"\\n      \"],[9,\"h3\",true],[10],[1,1,0,0,\"\xA1MUY BIEN!\"],[11],[1,1,0,0,\"\\n      \"],[9,\"p\",true],[10],[1,1,0,0,\"TOC\xC1 LA PANTALLA PARA VOLVER A JUGAR\"],[11],[1,1,0,0,\"\\n    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[1,1,0,0,\"    \"],[9,\"div\",false],[23,\"class\",\"canvas\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"pointermove\",[27,[24,0],[\"mouseMove\"]]],null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"pointerup\",[27,[24,0],[\"mouseUp\"]]],null],[10],[1,1,0,0,\"\\n      \"],[9,\"div\",false],[23,\"class\",\"puzzle\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"pointerdown\",[27,[24,0],[\"mouseDown\"]]],null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,5,\"BlockHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[27,[24,0],[\"puzzle\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"div\",true],[12,\"class\",\"row\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,5,\"BlockHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[27,[24,3],[]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"              \"],[9,\"div\",true],[12,\"class\",\"cell\",null],[10],[1,1,0,0,\"\\n                \"],[9,\"svg\",true],[12,\"viewBox\",\"0 0 10 10\",null],[10],[1,1,0,0,\"\\n                  \"],[9,\"text\",true],[12,\"x\",\"5\",null],[12,\"y\",\"8\",null],[10],[1,0,0,0,[31,832,11,[27,[26,3,\"CallHead\"],[]],[[27,[24,4],[]]],null]],[11],[1,1,0,0,\"\\n                \"],[11],[1,1,0,0,\"\\n              \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[4]}]]],[1,1,0,0,\"          \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[3]}]]],[1,1,0,0,\"        \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[[27,[24,0],[\"startPos\"]],[27,[24,0],[\"markerDir\"]],[27,[24,0],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,5,\"BlockHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"div\",false],[23,\"class\",\"marker\",null],[3,0,0,[27,[26,2,\"ModifierHead\"],[]],[[27,[24,2],[\"start\"]],[27,[24,2],[\"markerDir\"]],[27,[24,2],[\"markerLength\"]],[27,[24,0],[\"cellSize\"]]],null],[10],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[2]}]]],[1,1,0,0,\"      \"],[11],[1,1,0,0,\"\\n      \"],[9,\"div\",true],[12,\"class\",\"words\",null],[10],[1,1,0,0,\"\\n\"],[5,[27,[26,5,\"BlockHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[31,0,0,[27,[26,4,\"CallHead\"],[]],[[27,[24,0],[\"words\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"          \"],[9,\"span\",true],[13,\"class\",[31,1323,4,[27,[26,1,\"CallHead\"],[]],[[27,[24,0],[\"foundWords\"]],[27,[24,1],[]]],null],null],[10],[1,0,0,0,[27,[24,1],[]]],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[1]}]]],[1,1,0,0,\"      \"],[11],[1,1,0,0,\"\\n\"],[5,[27,[26,6,\"BlockHead\"],[]],[[27,[24,0],[\"cellSize\"]]],null,[[\"default\"],[{\"statements\":[[1,1,0,0,\"        \"],[9,\"button\",false],[23,\"class\",\"solve\",null],[3,0,0,[27,[26,0,\"ModifierHead\"],[]],[\"click\",[27,[24,0],[\"solve\"]]],null],[10],[1,1,0,0,\"RESOLVER\"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]],[1,1,0,0,\"    \"],[11],[1,1,0,0,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[1,1,0,0,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"on\",\"word\",\"marker\",\"filterAcute\",\"-track-array\",\"each\",\"if\",\"unless\"]}",
     meta: {
       moduleName: "emberapp/components/game.hbs"
     }
@@ -152,6 +155,29 @@
       };
       this.puzzle = wordfind.newPuzzle(this.words, settings);
       this.foundWords = [];
+    }
+
+    solve() {
+      const solution = wordfind.solve(this.puzzle, this.words);
+      let foundWords = [];
+      solution.found.forEach(w => {
+        const dir = {
+          'horizontal': 0,
+          'diagonal': 1,
+          'vertical': 2
+        }[w.orientation];
+        foundWords.push({
+          word: w.word,
+          start: {
+            i: w.x,
+            j: w.y
+          },
+          markerDir: dir,
+          markerLength: w.overlap
+        });
+      });
+      this.foundWords = foundWords;
+      setTimeout(() => this.done = true, 5000);
     }
 
     getIJ(ev) {
@@ -326,7 +352,7 @@
     initializer: function () {
       return [];
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseDown", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseDown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseMove", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseMove"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseUp", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseUp"), _class.prototype)), _class));
+  }), _applyDecoratedDescriptor(_class.prototype, "start", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "solve", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "solve"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseDown", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseDown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseMove", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseMove"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "mouseUp", [Ember._action], Object.getOwnPropertyDescriptor(_class.prototype, "mouseUp"), _class.prototype)), _class));
   _exports.default = Game;
 
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, Game);
@@ -380,6 +406,23 @@
   }
 
   var _default = Ember.Helper.helper(appVersion);
+
+  _exports.default = _default;
+});
+;define("emberapp/helpers/filterAcute", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.Helper.helper(function word(params
+  /*, hash*/
+  ) {
+    // only é for this case is needed
+    return params[0].replace('é', 'e');
+  });
 
   _exports.default = _default;
 });

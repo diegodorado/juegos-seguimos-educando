@@ -94,6 +94,7 @@ h3, p {
   pointer-events: none;
 }
 .words span {
+  text-transform: uppercase;
   display: inline-block;
   margin: 0 1vmin;
   font-size: 4vmin;
@@ -102,6 +103,18 @@ h3, p {
 }
 .words span.found {
   text-decoration: line-through;
+}
+
+button.solve {
+  cursor: pointer;
+  margin: 2vmin;
+  font-size: 3vmin;
+  text-shadow: 1px -1px 0 #000, 1px 1px 0 #000;
+  color: black;
+  background: white;
+  border: none;
+  padding: 1vmin;
+  border-radius: 5px;
 }
 
 @keyframes gradient {
